@@ -9,5 +9,5 @@ urlpatterns = [
     path('AdminLogin/',views.AdminLogin,name='AdminLogin'),
     # templates\adminstrator\adminlogin.html
     path('studentLogin/',include('student.urls')),
-    # path('adminLogin/',include('messadmin.urls')),
+    path('MessAdminLogin/',include('messadmin.urls')),
 ]
