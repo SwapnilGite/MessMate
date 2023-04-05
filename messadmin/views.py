@@ -22,7 +22,7 @@ def MessadminLogin(request):
         user=authenticate(username= loginusername, password= loginpassword)
         if user is not None:
             login(request, user)
-            return redirect(facultyAfterLogin)
+            return redirect(adminDashboard)
         else:
             
             return render(request,"messadmin/mess_adminlogin.html")
@@ -60,8 +60,8 @@ def messadminRegister(request):
     else:
         return render(request,"messadmin/mess_adminregister.html")   
 
-# def facultyAfterLogin(request):
-#     return render(request,"faculty/facultyAfterlogin.html")
+def adminDashboard(request):
+    return render(request,"messadmin/mess_admindash.html")
 
 
 

@@ -1,5 +1,5 @@
 from ast import Pass
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 from curses.ascii import NUL
 from datetime import datetime
 import email
@@ -31,8 +31,8 @@ class Student(models.Model):
     
     mis = models.IntegerField(primary_key=True)
     Name = models.CharField(max_length=50)
-    Gender = models.CharField(max_length=50,choices=GENDER_CHOICES,default=NULL)
-    Year=models.IntegerField(choices=YEAR_CHOICES,default=NULL)
+    Gender = models.CharField(max_length=50,choices=GENDER_CHOICES,default=None)
+    Year=models.IntegerField(choices=YEAR_CHOICES,default=None)
     Dept = models.CharField(max_length=70, default="")
     MessEnrolled = models.CharField(max_length=70,choices=MESS_CHOICES,default="")
     pass1= models.CharField(max_length=70, default="")

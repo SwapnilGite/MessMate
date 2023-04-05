@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('',views.MessadminLogin,name='MessadminLogin'),
     path('messadminRegister/',views.messadminRegister,name='messadminRegister'),
-    # path('facultyAfterLogin/',views.facultyAfterLogin,name='facultyAfterLogin'),
+    path('adminDashboard/',views.adminDashboard,name='adminDashboard'),
     # path('facultyAfterLogin/CreateCourse/',views.CreateCourse,name='CreateCourse'),
     # path('facultyAfterLogin/CreateQuiz/',views.CreateQuiz,name='CreateQuiz'),
     # path('facultyAfterLogin/ManageQuiz/',views.ManageQuiz,name='ManageQuiz'),
