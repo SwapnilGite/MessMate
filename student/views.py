@@ -25,8 +25,8 @@ def studentLogin(request):
         user=authenticate(username= loginusername, password= loginpassword)
         if user is not None:
             login(request, user)
-            return HttpResponse("Student Login\n");
-            # return redirect("studentQuiz")
+            # return HttpResponse("Student Login\n");
+            return redirect("studentAfterLogin")
         else:
             # loginstatus={"valid":0}
             # return render(request,"student/studentlogin.html",loginstatus)
@@ -70,6 +70,10 @@ def studentRegister(request):
         # return redirect('studenthome')
     else:
         return render(request, "student/studentregister.html")
+
+def studentAfterLogin(request):
+    
+    return HttpResponse("Student After Login")
 
 
 # def studentQuiz(request):
