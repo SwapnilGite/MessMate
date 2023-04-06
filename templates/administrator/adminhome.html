@@ -11,14 +11,95 @@
     <title>MessMate</title>
 
     <style>
-        body {
-          background-image: url("../../static/administrator/hostel.jpg");
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-color: red;
+      /* Center align the title */
+      h1 {
+        text-align: center;
+      }
+      /* Full width container for the card */
+      .card-container {
+        width: 100%;
+      }
+      /* Center align the card */
+      .card {
+        max-width: 500px;
+        margin: 50px auto 0;
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s;
+      }
+      /* Style the dropdown */
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+      }
+      /* Style the button */
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      /* Style the container for the food menu */
+      .food-menu {
+        display: block;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 50px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      /* Style the cards */
+      .card-menu {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+        padding: 20px;
+        transition: transform 0.2s;
+        flex-basis: 300px;
+      }
+      .card-menu:hover {
+        transform: scale(1.05);
+      }
+      .card-menu h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .card-menu p {
+        font-size: 16px;
+      }
+      /* Style the veg/non-veg buttons */
+      .veg-nonveg-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+      }
+      /* Style the horizontal alignment of the cards */
+      @media (min-width: 768px) {
+        .food-menu {
+          display: flex;
+          justify-content: center;
         }
+        .card-menu {
+          margin: 20px 10px;
+        }
+      }
     </style>
-     
 
   </head>
   <body>
@@ -32,44 +113,82 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/AdminLogin">Admin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/studentLogin">StudentLogin</a>
-              </li>
+             
+            
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/MessAdminLogin">MessAdminLogin</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
+              
+             
+             
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
       </nav>
-
+      <h1>MessMate</h1>
+      <div class="card-container">
+        <div class="card">
+          <p>Explore food menu from all mess around you</p>
+          <form>
+            <label for="mess-select">Select mess:</label>
+            <select id="mess-select">
+              <option value="mess-1">Mess 1</option>
+              <option value="mess-2">Mess 2</option>
+              <option value="mess-3">Mess 3</option>
+            </select>
+          </form>
+          <button id="explore-button">Explore</button>
+      </div>
+      <div class="food-menu" id="food-menu">
+        <div class="card-menu">
+          <h2>Breakfast</h2>
+          <p>Menu for breakfast goes here</p>
+        </div>
+        <div class="card-menu">
+          <h2>Lunch</h2>
+          <div>
+            <button class="veg-nonveg-button active" data-type="veg">Veg</button>
+            <button class="veg-nonveg-button" data-type="nonveg">Non-veg</button>
+          </div>
+          <p>Menu for lunch goes here</p>
+        </div>
+        <div class="card-menu">
+          <h2>Evening Snacks</h2>
+          <p>Menu for evening snacks goes here</p>
+        </div>
+        <div class="card-menu">
+          <h2>Dinner</h2>
+          <div>
+            <button class="veg-nonveg-button active" data-type="veg">Veg</button>
+            <button class="veg-nonveg-button" data-type="nonveg">Non-veg</button>
+          </div>
+          <p>Menu for dinner goes here</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      const exploreButton = document.getElementById("explore-button");
+      const foodMenu = document.getElementById("food-menu");
+    
+      exploreButton.addEventListener("click", function() {
+        foodMenu.style.display = "block";
+      });
+    
+      const vegNonvegButtons = document.querySelectorAll(".veg-nonveg-button");
+    
+      vegNonvegButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+          if (!button.classList.contains("active")) {
+            const type = button.getAttribute("data-type");
+            const activeButton = document.querySelector(".veg-nonveg-button.active[data-type='" + type + "']");
+            activeButton.classList.remove("active");
+            button.classList.add("active");
+          }
+        });
+      });
+    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
