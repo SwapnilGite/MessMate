@@ -10,6 +10,8 @@ from email.policy import default
 from random import choices
 from django.db import models
 from administrator.models import Mess
+from django.utils import timezone
+from student.models import Student
 # Create your models here.
 
 class MessAdmin(models.Model):
@@ -34,17 +36,37 @@ class MessAdmin(models.Model):
     
 class Menu(models.Model):
     
-    
     Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
     Brekfast = models.CharField(max_length=50)
-    Lunch = models.CharField(max_length=50)
-    Dinner = models.CharField(max_length=50)
+    VegLunch = models.CharField(max_length=50,default=None)
+    NonVegLunch = models.CharField(max_length=50,default=None)
+    Dinner = models.CharField(max_length=50,default=None)
+    NonVegDinner = models.CharField(max_length=50,default=None)
     EveSnacks = models.CharField(max_length=50)
-    Notes=models.CharField(max_length=100)
+    date = models.DateTimeField(default=timezone.now)
+
     
     def __str__(self):
         return self.Name
     
     
+class MealRecord(models.Model):
+    
+    Meal_id = models.IntegerField(primary_key=True, auto_created=True)
+    Student=models.ForeignKey(Student,on_delete=models.CASCADE,default=None)
+    Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
+    mealcount = models.IntegerField(default=0);
+    
+    # Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
+    # Brekfast = models.CharField(max_length=50)
+    # VegLunch = models.CharField(max_length=50,default=None)
+    # NonVegLunch = models.CharField(max_length=50,default=None)
+    # Dinner = models.CharField(max_length=50,default=None)
+    # NonVegDinner = models.CharField(max_length=50,default=None)
+    # EveSnacks = models.CharField(max_length=50)
+    # Notes=models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.Name
     
     

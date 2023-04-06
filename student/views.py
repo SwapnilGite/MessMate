@@ -24,6 +24,7 @@ def studentLogin(request):
         
         user=authenticate(username= loginusername, password= loginpassword)
         if user is not None:
+            print("Hello World\n");
             login(request, user)
             # return HttpResponse("Student Login\n");
             return redirect("studentAfterLogin")
@@ -72,8 +73,7 @@ def studentRegister(request):
         return render(request, "student/studentregister.html")
 
 def studentAfterLogin(request):
-    
-    return HttpResponse("Student After Login")
+    return render(request,"student/studentAfterLogin.html");
 
 
 # def studentQuiz(request):
