@@ -26,7 +26,7 @@ def home(request):
     
     print(my_dict);
     # FY_MENU=
-    return render(request,'administrator/index.htmladministrator/index.html',my_dict)
+    return render(request,'administrator/index.html',my_dict)
 
 def AdminLogin(request):
     # return HttpResponse("Admin Login Entered")
