@@ -1,41 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>MessMate</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-        body {
-          background-image: url("../../static/administrator/hostel.jpg");
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-color: red;
-        }
-    </style>
-     
+  <title>MessMate</title>
 
-  </head>
-  <body>
+  <style>
+    body {
+      background-image: url("../../static/administrator/hostel.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
 
-    <!-- Navabar Starts Here -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">MessMate</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <!-- <li class="nav-item">
+
+</head>
+
+<body>
+
+  <!-- Navabar Starts Here -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MessMate</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <!-- <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/AdminLogin">Admin</a>
               </li>
               <li class="nav-item">
@@ -44,35 +47,99 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/MessAdminLogin">MessAdminLogin</a>
               </li> -->
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-            
-          </div>
-        </div>
-      </nav>
-      <div>
-        {% if request.user.is_authenticated %}
-    	    <p>Welcome, {{ request.user.username }}!</p>
-        {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
 
       </div>
+    </div>
+  </nav>
+  <div>
+    {% if request.user.is_authenticated %}
+    <p>Welcome, {{ request.user.username }}!</p>
+    {% endif %}
+  </div>
+  <div class="my-5 mx-4">
+    <!-- class Menu(models.Model):
+    
+        Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
+        Brekfast = models.CharField(max_length=50)
+        VegLunch = models.CharField(max_length=50,default=None)
+        NonVegLunch = models.CharField(max_length=50,default=None)
+        Dinner = models.CharField(max_length=50,default=None)
+        NonVegDinner = models.CharField(max_length=50,default=None)
+        EveSnacks = models.CharField(max_length=50)
+        date = models.DateTimeField(default=timezone.now)
+    
+        
+        def __str__(self):
+            return self.date+self.Messname -->
+    <form action="/MessAdminLogin/adminDashboard/" method="post">
+    {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Morning Breakfast</label>
+        <input type="text" name="Breakfast" class="form-control" id="Breakfast" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Veg Lunch Menu</label>
+        <input type="text" name="VegLunch" class="form-control" id="VegLunch" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Lunch Menu</label>
+        <input type="text" name="NonVegLunch" class="form-control" id="NonVegLunch" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Evening Snacks</label>
+        <input type="text"  name ="EveSnacks" class="form-control" id="EveSnacks">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Veg Dinner </label>
+        <input type="text" name="VegDinner" class="form-control" id="Dinner">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Non Veg Dinner </label>
+        <input type="text" name="NonVegDinner"class="form-control" id="Dinner">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+
+    <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count">
+      {% csrf_token %}
+      <label for="student">Select student:</label>
+      <select name="student" id="student">
+        {% for student in students %}
+          <option value="{{ student.id }}">{{ student.name }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <input type="submit" name="submit" value="Increase count" onclick="return confirm('Are you sure you want to increase the meal count?')">
+    </form>
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

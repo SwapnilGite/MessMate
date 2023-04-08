@@ -18,15 +18,15 @@ class MessAdmin(models.Model):
     
    
     MESS_CHOICES = (
-    ("1", "FY"),
-    ("2", "SY"),
-    ("3", "TY"),
-    ("4", "BTech"),
+    ("FY", "FY"),
+    ("SY", "SY"),
+    ("TY", "TY"),
+    ("BTech", "BTech"),
     )
     
     Admin_id = models.IntegerField(primary_key=True)
     Name = models.CharField(max_length=50)
-    Mess_name = models.ForeignKey(Mess,on_delete=models.CASCADE)
+    Mess = models.ForeignKey(Mess,on_delete=models.CASCADE)
     pass1= models.CharField(max_length=70, default="")
     email=models.EmailField(max_length=100 ,default="")
     
@@ -36,37 +36,50 @@ class MessAdmin(models.Model):
     
 class Menu(models.Model):
     
-    Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
-    Brekfast = models.CharField(max_length=50)
+    Mess = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
+    Breakfast = models.CharField(max_length=50)
     VegLunch = models.CharField(max_length=50,default=None)
     NonVegLunch = models.CharField(max_length=50,default=None)
-    Dinner = models.CharField(max_length=50,default=None)
+    VegDinner = models.CharField(max_length=50,default=None)
     NonVegDinner = models.CharField(max_length=50,default=None)
     EveSnacks = models.CharField(max_length=50)
     date = models.DateTimeField(default=timezone.now)
-
     
-    def __str__(self):
-        return self.Name
+ 
     
     
 class MealRecord(models.Model):
     
-    Meal_id = models.IntegerField(primary_key=True, auto_created=True)
+    months = (
+    ("January", "January"),
+    ("February", "February"),
+    ("March", "March"),
+    ("April", "April"),
+    ("May", "May"),
+    ("June", "June"),
+    ("July", "July"),
+    ("August", "August"),
+    ("September", "September"),
+    ("October", "October"),
+    ("November", "November"),
+    ("December", "December"),
+    )
+    
+   
+    Meal_id = models.AutoField(primary_key=True)
     Student=models.ForeignKey(Student,on_delete=models.CASCADE,default=None)
     Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
     mealcount = models.IntegerField(default=0);
-    
-    # Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
-    # Brekfast = models.CharField(max_length=50)
-    # VegLunch = models.CharField(max_length=50,default=None)
-    # NonVegLunch = models.CharField(max_length=50,default=None)
-    # Dinner = models.CharField(max_length=50,default=None)
-    # NonVegDinner = models.CharField(max_length=50,default=None)
-    # EveSnacks = models.CharField(max_length=50)
-    # Notes=models.CharField(max_length=100)
+    month = models.CharField(max_length=50,choices=months,default=None)
+
+class Bill(models.Model):
+    billpaid=(
+        ('0','0'),
+        ('1','1')
+    )
+    Bill_id=models.AutoField(primary_key=True)
+    Meal_id=models.ForeignKey(MealRecord,default=None,on_delete=models.CASCADE)
+    bill_paid=models.IntegerField(choices=billpaid,default=None);
     
     def __str__(self):
-        return self.Name
-    
-    
+        return self.Bill_id

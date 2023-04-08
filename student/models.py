@@ -11,9 +11,9 @@ from django.db import models
 
 class Student(models.Model):
     GENDER_CHOICES = (
-    ("M", "Male"),
-    ("F", "Female"),
-    ("O", "Others"),
+    ("Male", "Male"),
+    ("Female", "Female"),
+    ("Others", "Others"),
     )
     
     YEAR_CHOICES = (
@@ -23,10 +23,10 @@ class Student(models.Model):
     ("4", "4"),
     )
     MESS_CHOICES = (
-    ("1", "FY"),
-    ("2", "SY"),
-    ("3", "TY"),
-    ("4", "BTech"),
+    ("FY", "FY"),
+    ("SY", "SY"),
+    ("TY", "TY"),
+    ("BTech", "BTech"),
     )
     
     mis = models.IntegerField(primary_key=True)
@@ -34,7 +34,7 @@ class Student(models.Model):
     Gender = models.CharField(max_length=50,choices=GENDER_CHOICES,default=None)
     Year=models.IntegerField(choices=YEAR_CHOICES,default=None)
     Dept = models.CharField(max_length=70, default="")
-    MessEnrolled = models.CharField(max_length=70,choices=MESS_CHOICES,default="")
+    Mess = models.CharField(max_length=70,choices=MESS_CHOICES,default="")
     pass1= models.CharField(max_length=70, default="")
     email=models.EmailField(max_length=100 ,default="")
     
@@ -42,5 +42,15 @@ class Student(models.Model):
     def __str__(self):
         return self.Name
     
+class Feedback(models.Model):
+    feedback = models.CharField(max_length=50)
+    date = models.DateTimeField(auto_now_add=True)
     
-    
+    def __str__(self):
+        return self.date
+
+# class M
+
+
+
+

@@ -4,7 +4,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth  import authenticate,  login, logout
 from messadmin.models import MessAdmin
+from messadmin.models import Menu
+from administrator.models import Mess
 from django.contrib.auth.models import Group
+from datetime import date
+
 # from quiz.models import Course
 # from quiz.models import Quiz
 # from quiz.models import Question
@@ -29,23 +33,67 @@ def MessadminLogin(request):
 
     return render(request,"messadmin/mess_adminlogin.html")
 
+def adminDashboard(request):
+    if request.method == "POST":
+        # get the current user's MessAdmin object
+        current_user = request.user.username
+      
+        admin = MessAdmin.objects.get(Admin_id=current_user)
+        Mess = admin.Mess
+
+        # get the menu data from the POST request
+        breakfast = request.POST.get('Breakfast', '')
+        veg_lunch = request.POST.get('VegLunch', '')
+        non_veg_lunch = request.POST.get('NonVegLunch', '')
+        veg_dinner = request.POST.get('VegDinner', '') # fixed variable name
+        non_veg_dinner = request.POST.get('NonVegDinner', '') # fixed variable name
+        eve_snacks = request.POST.get("EveSnacks", '')
+
+        # get the current date
+        today = date.today()
+
+        # check if a Menu object already exists for this Mess and date
+        try:
+            menu = Menu.objects.get(date=today, Mess=Mess)
+        except Menu.DoesNotExist:
+            # if no Menu object exists, create a new one and save it
+            menu = Menu(Mess=Mess, Breakfast=breakfast, VegLunch=veg_lunch, NonVegLunch=non_veg_lunch, VegDinner=veg_dinner, NonVegDinner=non_veg_dinner, EveSnacks=eve_snacks, date=today)
+            menu.save()
+            print("New menu created")
+        else:
+            # if a Menu object already exists, update it
+            menu.Breakfast = breakfast
+            menu.VegLunch = veg_lunch
+            menu.NonVegLunch = non_veg_lunch
+            menu.VegDinner = veg_dinner
+            menu.NonVegDinner = non_veg_dinner
+            menu.EveSnacks = eve_snacks
+            menu.save()
+            print("Menu updated")
+            
+        return redirect('adminDashboard')
+
+    return render(request, "messadmin/mess_admindash.html")
+
 def messadminRegister(request):
-   
+      
     if request.method=="POST":
         Admin_id=request.POST.get('Admin_id','')
-        Name=request.POST.get('First_Name', '')
+        Name=request.POST.get('Name', '')
         Mess_name=request.POST.get("Mess_name",'')
         pass1=request.POST.get('pass1','')
         email=request.POST.get('email', '')
         
-        MessAd =MessAdmin(Admin_id=Admin_id,Name=Name,Mess_name=Mess_name,pass1=pass1,email=email)
-        MessAd.save()
-        
+        Mess_=Mess.objects.filter(Mess_name=Mess_name)[0]
+        print(Mess_)
         print("Admin_id : ",Admin_id)
         print("Name : ",Name)
         print("Mess_name : ",Mess_name)
         print("pass1 : ",pass1)
         print("email : ",email)
+        
+        MessAd =MessAdmin(Admin_id=Admin_id,Name=Name,Mess_name=Mess_,pass1=pass1,email=email)
+        MessAd.save()
         
         
         # Create the user
@@ -60,10 +108,9 @@ def messadminRegister(request):
     else:
         return render(request,"messadmin/mess_adminregister.html")   
 
-def adminDashboard(request):
-    return render(request,"messadmin/mess_admindash.html")
 
 
+    
 
 # def CreateCourse(request):
     

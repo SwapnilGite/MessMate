@@ -16,16 +16,16 @@ class Mess(models.Model):
     
    
     MESS_CHOICES = (
-    ("1", "FY"),
-    ("2", "SY"),
-    ("3", "TY"),
-    ("4", "BTech"),
+    ("FY", "FY"),
+    ("SY", "SY"),
+    ("TY", "TY"),
+    ("BTech", "BTech"),
     )
     
     Mess_name = models.CharField(primary_key=True,max_length=50,choices=MESS_CHOICES,default=None)
 
     def __str__(self):
-        return self.Name
+        return self.Mess_name
     
 
     
