@@ -5,11 +5,11 @@ from django.shortcuts import render
 from django.contrib.auth  import authenticate,  login, logout
 
 def home(request):
-    return render(request,'')
+    return render(request,'administrator/index.html')
 
 def AdminLogin(request):
     # return HttpResponse("Admin Login Entered")
-    return render(request,'all_templates\home\index.html')
+    return render(request,'administrator/index.html')
     
     # if request.method=="POST":
         

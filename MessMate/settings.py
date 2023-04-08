@@ -4,7 +4,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR=os.path.join(BASE_DIR,'static')
+# STATIC_DIR=os.path.join(BASE_DIR,'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -72,7 +72,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'messdatabase',
         'USER': 'root',
-        'PASSWORD' : 'Devgiri@20',
+        'PASSWORD' : 'root',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'OPTIONS': { 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" }
@@ -117,7 +117,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
