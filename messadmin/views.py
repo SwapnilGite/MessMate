@@ -8,7 +8,7 @@ from messadmin.models import Menu
 from administrator.models import Mess
 from django.contrib.auth.models import Group
 from datetime import date
-
+from student.models import Student
 # from quiz.models import Course
 # from quiz.models import Quiz
 # from quiz.models import Question
@@ -26,7 +26,7 @@ def MessadminLogin(request):
         user=authenticate(username= loginusername, password= loginpassword)
         if user is not None:
             login(request, user)
-            return redirect(adminDashboard)
+            return redirect("adminDashboard")
         else:
             
             return render(request,"messadmin/mess_adminlogin.html")
@@ -34,6 +34,15 @@ def MessadminLogin(request):
     return render(request,"messadmin/mess_adminlogin.html")
 
 def adminDashboard(request):
+    
+    admin_id=request.user.username
+    mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
+    Mess_=mess_admin.Mess.Mess_name
+    # print(Mess_.Mess_name)
+    all_students=Student.objects.filter(Mess=Mess_)
+    print(all_students)
+    
+    
     if request.method == "POST":
         # get the current user's MessAdmin object
         current_user = request.user.username

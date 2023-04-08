@@ -32,9 +32,9 @@ class Student(models.Model):
     mis = models.IntegerField(primary_key=True)
     Name = models.CharField(max_length=50)
     Gender = models.CharField(max_length=50,choices=GENDER_CHOICES,default=None)
-    Year=models.IntegerField(choices=YEAR_CHOICES,default=None)
+    Year=models.IntegerField(choices=YEAR_CHOICES)
     Dept = models.CharField(max_length=70, default="")
-    Mess = models.CharField(max_length=70,choices=MESS_CHOICES,default="")
+    Mess=models.CharField(max_length=20,choices=MESS_CHOICES,default="")
     pass1= models.CharField(max_length=70, default="")
     email=models.EmailField(max_length=100 ,default="")
     

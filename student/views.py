@@ -42,13 +42,13 @@ def studentRegister(request):
         Gender=request.POST.get("Gender",'')
         Year=request.POST.get("Year",'')
         mis=request.POST.get('MIS','')
-        MessEnrolled=request.POST.get('','')
+        MessEnrolled=request.POST.get('MESS_ENR','')
         Dept=request.POST.get('Dept','')
         pass1=request.POST.get('pass1','')
         email=request.POST.get('email', '')
         
     
-        student =Student(Name=Name,mis=mis,Gender=Gender,pass1=pass1,Year=Year,Dept=Dept,email=email)
+        student =Student(Name=Name,mis=mis,Gender=Gender,Mess=MessEnrolled,pass1=pass1,Year=Year,Dept=Dept,email=email)
         student.save()
         
         print("Name : ",Name)
