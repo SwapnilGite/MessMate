@@ -5,9 +5,27 @@ from django.shortcuts import render
 from django.contrib.auth  import authenticate,  login, logout
 from messadmin.models import Mess
 from messadmin.models import Menu
+from django.template import loader
+
+
+# def fyMenu(request):
+#     fymenu=Menu.objects.filter(Mess='FY')[0]
+#     fymess = {
+#         "fymenu": fymenu
+#     }
+#     print(fymess['fymenu'].VegLunch)
+#     return render(request,'administrator/index.html',fymess)
+
+# def SyMenu(request):
+#     symenu=Menu.objects.filter(Mess='SY')[0]
+#     symess = {
+#         "symenu": symenu
+#     }
+#     print(symess['symenu'].NonVegLunch)
+#     return render(request,'administrator/index.html',symess)
 def home(request):
     
-    # dict={}
+    dict={}
     fymenu=Menu.objects.filter(Mess='FY')[0]
     symenu=Menu.objects.filter(Mess='SY')[0]
     tymenu=Menu.objects.filter(Mess='TY')[0]
@@ -24,7 +42,7 @@ def home(request):
     "btechmenu": btechmenu
 }
     
-    print(my_dict);
+    print(my_dict['fymenu']);
     # FY_MENU=
     return render(request,'administrator/index.html',my_dict)
 
