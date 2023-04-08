@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
 
-  <title> Feane </title>
+  <title> {{ my_dict.fymenu.Breakfast }} </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -64,7 +64,26 @@
 </head>
 
 <body>
+  <div>
+    <!-- administrator/index.html -->
 
+<!-- display the Breakfast field for fymenu -->
+<h2>FY Menu - Breakfast</h2>
+<p>{{ my_dict.fymenu.Breakfast }}</p>
+
+<!-- display the VegLunch field for symenu -->
+<h2>SY Menu - Veg Lunch</h2>
+<p>{{ my_dict.symenu.VegLunch }}</p>
+
+<!-- display the NonVegLunch field for tymenu -->
+<h2>TY Menu - Non Veg Lunch</h2>
+<p>{{ my_dict.tymenu.NonVegLunch }}</p>
+
+<!-- display the VegDinner field for btechmenu -->
+<h2>BTech Menu - Veg Dinner</h2>
+<p>{{ my_dict.btechmenu.VegDinner }}</p>
+
+  </div>
   <div class="hero_area">
     <div class="bg-box">
       <img src="images/1.jpg" alt="">

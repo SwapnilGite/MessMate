@@ -3,13 +3,34 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth  import authenticate,  login, logout
-
+from messadmin.models import Mess
+from messadmin.models import Menu
 def home(request):
-    return render(request,'')
+    
+    # dict={}
+    fymenu=Menu.objects.filter(Mess='FY')[0]
+    symenu=Menu.objects.filter(Mess='SY')[0]
+    tymenu=Menu.objects.filter(Mess='TY')[0]
+    btechmenu=Menu.objects.filter(Mess='BTech')[0]
+    
+    print(fymenu)
+    print(symenu)
+    print(tymenu)
+    print(btechmenu)
+    my_dict = {
+    "fymenu": fymenu,
+    "symenu": symenu,
+    "tymenu": tymenu,
+    "btechmenu": btechmenu
+}
+    
+    print(my_dict);
+    # FY_MENU=
+    return render(request,'administrator/index.html',my_dict)
 
 def AdminLogin(request):
     # return HttpResponse("Admin Login Entered")
-    return render(request,'all_templates\home\index.html')
+    return render(request,'administrator/adminlogin.html')
     
     # if request.method=="POST":
         

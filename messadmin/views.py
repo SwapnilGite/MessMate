@@ -38,7 +38,7 @@ def adminDashboard(request):
     admin_id=request.user.username
     mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
     Mess_=mess_admin.Mess.Mess_name
-    # print(Mess_.Mess_name)
+    print(Mess_)
     all_students=Student.objects.filter(Mess=Mess_)
     print(all_students)
     

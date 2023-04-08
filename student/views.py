@@ -56,6 +56,7 @@ def studentRegister(request):
         print("Year : ",Year)
         print("mis : ",mis)
         print("Dept : ",Dept)
+        print("Mess : ",MessEnrolled)
         print("pass1 : ",pass1)
         print("email : ",email)
         
