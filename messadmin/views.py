@@ -10,7 +10,9 @@ from messadmin.models import MealRecord
 from django.contrib.auth.models import Group
 from datetime import date
 from student.models import Student
+from student.models import Feedback
 import datetime
+# from student.models import Feedback
 # from quiz.models import Course
 # from quiz.models import Quiz
 # from quiz.models import Question
@@ -45,8 +47,13 @@ def adminDashboard(request):
     all_students=Student.objects.filter(Mess=Mess_)
     print(all_students)
     
+    
+    all_feedbacks=Feedback.objects.all();
+    for feedback in all_feedbacks:
+        print(feedback.feedback)
     my_dict = {
     "all_students": all_students,
+    "all_feedback":all_feedbacks,
     }
     # print("Fdd")increase_count update_menu
     if request.method == 'POST' and 'update_menu' in request.POST:
