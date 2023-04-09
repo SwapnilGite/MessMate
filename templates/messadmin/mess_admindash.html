@@ -92,7 +92,7 @@
         
         def __str__(self):
             return self.date+self.Messname -->
-    <form action="/MessAdminLogin/adminDashboard/" method="post">
+    <form action="/MessAdminLogin/adminDashboard/" name="update_menu" method="post">
     {% csrf_token %}
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Morning Breakfast</label>
@@ -124,22 +124,57 @@
     </form>
 
 
-    <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count">
+    <!-- <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count" style="background-color: #f2f2f2; padding: 20px;">
       {% csrf_token %}
-      <label for="student">Select student:</label>
-      <select name="student" id="student">
-        {% for student in students %}
-          <option value="{{ student.id }}">{{ student.name }}</option>
+      <label for="student" style="font-size: 18px;">Select student:</label>
+      <select name="student" id="student" style="font-size: 16px; padding: 5px;">
+        {% for student in all_students %}
+          <option value="{{ student.mis }}">{{ student.Name }}</option>
         {% endfor %}
       </select>
       <br><br>
-      <input type="submit" name="submit" value="Increase count" onclick="return confirm('Are you sure you want to increase the meal count?')">
+      <input type="submit" name="submit" value="Increase count" onclick="return confirm('Are you sure you want to increase the meal count?')" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
+    </form> -->
+    <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count" style="background-color: #f2f2f2; padding: 20px;">
+      {% csrf_token %}
+      <label for="student" style="font-size: 18px;">Select student:</label>
+      <input type="text" id="search" name="search" placeholder="Search student name" style="font-size: 16px; padding: 5px; margin-left: 10px;">
+      <select name="student" id="student" style="font-size: 16px; padding: 5px;">
+        {% for student in all_students %}
+        <!-- <h1>student.mis</h1> -->
+          <option value="{{ student.mis }}">{{ student.Name }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+
+      <input type="submit" name="submit" value="increase count" onclick="return confirm('Are you sure you want to increase the meal count?')" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
     </form>
     
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+    <script>
+      const searchInput = document.getElementById('search');
+      const select = document.getElementById('student');
+      const options = select.options;
+    
+      searchInput.addEventListener('input', (e) => {
+        const searchText = e.target.value.toLowerCase();
+        for (let i = 0; i < options.length; i++) {
+          const optionText = options[i].text.toLowerCase();
+          if (optionText.includes(searchText)) {
+            options[i].hidden = false;
+          } else {
+            options[i].hidden = true;
+          }
+        }
+      });
+    </script>
+    <script>
+      alert('{{ message }}');
+    </script>
 </body>
 
 </html>

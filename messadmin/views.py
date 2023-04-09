@@ -6,9 +6,11 @@ from django.contrib.auth  import authenticate,  login, logout
 from messadmin.models import MessAdmin
 from messadmin.models import Menu
 from administrator.models import Mess
+from messadmin.models import MealRecord
 from django.contrib.auth.models import Group
 from datetime import date
 from student.models import Student
+import datetime
 # from quiz.models import Course
 # from quiz.models import Quiz
 # from quiz.models import Question
@@ -34,55 +36,97 @@ def MessadminLogin(request):
     return render(request,"messadmin/mess_adminlogin.html")
 
 def adminDashboard(request):
-    
+    print(1)
     admin_id=request.user.username
     mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
+    print(mess_admin.Name)
     Mess_=mess_admin.Mess.Mess_name
     print(Mess_)
     all_students=Student.objects.filter(Mess=Mess_)
     print(all_students)
     
-    
-    if request.method == "POST":
-        # get the current user's MessAdmin object
-        current_user = request.user.username
-      
-        admin = MessAdmin.objects.get(Admin_id=current_user)
-        Mess = admin.Mess
-
-        # get the menu data from the POST request
-        breakfast = request.POST.get('Breakfast', '')
-        veg_lunch = request.POST.get('VegLunch', '')
-        non_veg_lunch = request.POST.get('NonVegLunch', '')
-        veg_dinner = request.POST.get('VegDinner', '') # fixed variable name
-        non_veg_dinner = request.POST.get('NonVegDinner', '') # fixed variable name
-        eve_snacks = request.POST.get("EveSnacks", '')
-
-        # get the current date
-        today = date.today()
-
-        # check if a Menu object already exists for this Mess and date
+    my_dict = {
+    "all_students": all_students,
+    }
+    # print("Fdd")increase_count update_menu
+    if request.method == 'POST' and 'update_menu' in request.POST:
+    # and 'increase_count' in request.POST:
+        
+        print("Ïnserted")
+        student_mis = request.POST.get('student')
+        print(student_mis)
+        student = Student.objects.filter(mis=student_mis)[0]
+        
+        admin_id=request.user.username
+        mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
+        Mess_=mess_admin.Mess
+        current_month = datetime.date.today().strftime("%B")
+        print("month")
+        print(current_month)
+        # check if a meal record for this student and month already exists
         try:
-            menu = Menu.objects.get(date=today, Mess=Mess)
-        except Menu.DoesNotExist:
-            # if no Menu object exists, create a new one and save it
-            menu = Menu(Mess=Mess, Breakfast=breakfast, VegLunch=veg_lunch, NonVegLunch=non_veg_lunch, VegDinner=veg_dinner, NonVegDinner=non_veg_dinner, EveSnacks=eve_snacks, date=today)
-            menu.save()
-            print("New menu created")
-        else:
-            # if a Menu object already exists, update it
-            menu.Breakfast = breakfast
-            menu.VegLunch = veg_lunch
-            menu.NonVegLunch = non_veg_lunch
-            menu.VegDinner = veg_dinner
-            menu.NonVegDinner = non_veg_dinner
-            menu.EveSnacks = eve_snacks
-            menu.save()
-            print("Menu updated")
+            meal_record = MealRecord.objects.get(Student=student, month=current_month)
+            meal_record.Messname=Mess_
+            meal_record.mealcount += 1
+            meal_record.Messname=Mess_
+            meal_record.Student=student
+            meal_record.save()
+            message = f"Meal count for {student.Name} increased to {meal_record.mealcount} for {current_month}"
+            print(message)
+        except MealRecord.DoesNotExist:
+            meal_record = MealRecord.objects.create(Student=student,month=current_month,Messname=Mess_)
+            meal_record.save()
+            message = f"Meal count for {student.Name} set to 1 for {current_month}"
+            print(message)
             
-        return redirect('adminDashboard')
+        return render(request, 'messadmin/mess_admindash.html',my_dict)
+    
+    # if request.method == "POST"  and 'update_menu' in request.POST:
+    #     # get the current user's MessAdmin object
+    #     print(2)
+    #     current_user = request.user.username
+      
+    #     admin = MessAdmin.objects.get(Admin_id=current_user)
+    #     Mess = admin.Mess
 
-    return render(request, "messadmin/mess_admindash.html")
+    #     # get the menu data from the POST request
+    #     breakfast = request.POST.get('Breakfast', '')
+    #     veg_lunch = request.POST.get('VegLunch', '')
+    #     non_veg_lunch = request.POST.get('NonVegLunch', '')
+    #     veg_dinner = request.POST.get('VegDinner', '') # fixed variable name
+    #     non_veg_dinner = request.POST.get('NonVegDinner', '') # fixed variable name
+    #     eve_snacks = request.POST.get("EveSnacks", '')
+
+    #     # get the current date
+    #     today = date.today()
+
+    #     # check if a Menu object already exists for this Mess and date
+    #     try:
+    #         menu = Menu.objects.get(date=today, Mess=Mess)
+    #     except Menu.DoesNotExist:
+    #         # if no Menu object exists, create a new one and save it
+    #         menu = Menu(Mess=Mess, Breakfast=breakfast, VegLunch=veg_lunch, NonVegLunch=non_veg_lunch, VegDinner=veg_dinner, NonVegDinner=non_veg_dinner, EveSnacks=eve_snacks, date=today)
+    #         menu.save()
+    #         print("New menu created")
+    #     else:
+    #         # if a Menu object already exists, update it
+    #         menu.Breakfast = breakfast
+    #         menu.VegLunch = veg_lunch
+    #         menu.NonVegLunch = non_veg_lunch
+    #         menu.VegDinner = veg_dinner
+    #         menu.NonVegDinner = non_veg_dinner
+    #         menu.EveSnacks = eve_snacks
+    #         menu.save()
+    #         print("Menu updated")
+            
+    #     return redirect('adminDashboard')
+    
+    
+    # else:
+    #     students = Student.objects.all()
+    #     return render(request, 'meal_count.html', {'students': students})
+
+    return render(request, "messadmin/mess_admindash.html",my_dict)
 
 def messadminRegister(request):
       
