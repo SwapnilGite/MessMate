@@ -6,7 +6,8 @@ from django.contrib.auth  import authenticate,  login, logout
 from messadmin.models import Mess
 from messadmin.models import Menu
 from django.template import loader
-
+from django.utils import timezone
+from datetime import date
 
 # def fyMenu(request):
 #     fymenu=Menu.objects.filter(Mess='FY')[0]
@@ -26,10 +27,11 @@ from django.template import loader
 def home(request):
     
     dict={}
-    fymenu=Menu.objects.filter(Mess='FY')[0]
-    symenu=Menu.objects.filter(Mess='SY')[0]
-    tymenu=Menu.objects.filter(Mess='TY')[0]
-    btechmenu=Menu.objects.filter(Mess='BTech')[0]
+    
+    fymenu=Menu.objects.filter(Mess='FY',date=date.today())[0]
+    symenu=Menu.objects.filter(Mess='SY',date=date.today())[0]
+    tymenu=Menu.objects.filter(Mess='TY',date=date.today())[0]
+    btechmenu=Menu.objects.filter(Mess='BTech',date=date.today())[0]
     
     print(fymenu)
     print(symenu)

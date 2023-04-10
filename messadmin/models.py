@@ -45,7 +45,8 @@ class Menu(models.Model):
     EveSnacks = models.CharField(max_length=50)
     date = models.DateTimeField(default=timezone.now)
     
- 
+    def __str__(self):
+        return self.Mess.Mess_name+" "+str(self.date)
     
     
 class MealRecord(models.Model):
@@ -72,6 +73,30 @@ class MealRecord(models.Model):
     mealcount = models.IntegerField(default=0);
     month = models.CharField(max_length=50,choices=months,default=None)
 
+class BfRecord(models.Model):
+    
+    months = (
+    ("January", "January"),
+    ("February", "February"),
+    ("March", "March"),
+    ("April", "April"),
+    ("May", "May"),
+    ("June", "June"),
+    ("July", "July"),
+    ("August", "August"),
+    ("September", "September"),
+    ("October", "October"),
+    ("November", "November"),
+    ("December", "December"),
+    )
+    
+   
+    Bf_id = models.AutoField(primary_key=True)
+    Student=models.ForeignKey(Student,on_delete=models.CASCADE,default=None)
+    Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
+    amount = models.IntegerField(default=0);
+    month = models.CharField(max_length=50,choices=months,default=None)
+    
 class Bill(models.Model):
     billpaid=(
         ('0','0'),

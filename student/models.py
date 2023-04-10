@@ -42,13 +42,6 @@ class Student(models.Model):
     def __str__(self):
         return self.Name
     
-class Feedback(models.Model):
-    feedback = models.CharField(max_length=50)
-    date = models.DateTimeField(auto_now_add=True)
-    # Mess=models.CharField(max_length=30,default=None)
-    
-    def __str__(self):
-        return str(self.date)
 
 # class M
 

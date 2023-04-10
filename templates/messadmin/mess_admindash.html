@@ -20,14 +20,15 @@
     }
   </style>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#feedback-table').DataTable();
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#feedback-table').DataTable();
     });
-</script>
+  </script>
 
 
 </head>
@@ -101,35 +102,38 @@
         
         def __str__(self):
             return self.date+self.Messname -->
-    <form action="/MessAdminLogin/adminDashboard/" name="update_menu" method="post">
-    {% csrf_token %}
+    <form name="update_menu" method="post" action="/MessAdminLogin/adminDashboard/">
+      {% csrf_token %}
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Morning Breakfast</label>
-        <input type="text" name="Breakfast" class="form-control" id="Breakfast" aria-describedby="emailHelp">
+        <input type="text" name="Breakfast" class="form-control" id="Breakfast" aria-describedby="emailHelp"
+          value="{{ today_menu.Breakfast }}">
         <div id="emailHelp" class="form-text"></div>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Veg Lunch Menu</label>
-        <input type="text" name="VegLunch" class="form-control" id="VegLunch" aria-describedby="emailHelp">
+        <input type="text" name="VegLunch" class="form-control" id="VegLunch" aria-describedby="emailHelp"
+          value="{{ today_menu.VegLunch }}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Lunch Menu</label>
-        <input type="text" name="NonVegLunch" class="form-control" id="NonVegLunch" aria-describedby="emailHelp">
+        <input type="text" name="NonVegLunch" class="form-control" id="NonVegLunch" aria-describedby="emailHelp"
+          value="{{ today_menu.NonVegLunch }}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Evening Snacks</label>
-        <input type="text"  name ="EveSnacks" class="form-control" id="EveSnacks">
+        <input type="text" name="EveSnacks" class="form-control" id="EveSnacks" value="{{ today_menu.EveSnacks }}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Veg Dinner </label>
-        <input type="text" name="VegDinner" class="form-control" id="Dinner">
+        <input type="text" name="VegDinner" class="form-control" id="Dinner" value="{{ today_menu.VegDinner }}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Non Veg Dinner </label>
-        <input type="text" name="NonVegDinner"class="form-control" id="Dinner">
+        <input type="text" name="NonVegDinner" class="form-control" id="Dinner" value="{{ today_menu.NonVegDinner }}">
       </div>
-  
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <button type="submit" name="update_menu" value="update_menu" class="btn btn-primary">Submit</button>
     </form>
 
 
@@ -144,66 +148,106 @@
       <br><br>
       <input type="submit" name="submit" value="Increase count" onclick="return confirm('Are you sure you want to increase the meal count?')" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
     </form> -->
-    <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count" style="background-color: #f2f2f2; padding: 20px;">
+    <form name="increase_count" method="post" action="/MessAdminLogin/adminDashboard/"
+      style="background-color: #f2f2f2; padding: 20px;">
       {% csrf_token %}
       <label for="student" style="font-size: 18px;">Select student:</label>
-      <input type="text" id="search" name="search" placeholder="Search student name" style="font-size: 16px; padding: 5px; margin-left: 10px;">
+      <input type="text" id="search" name="search" placeholder="Search student name"
+        style="font-size: 16px; padding: 5px; margin-left: 10px;">
       <select name="student" id="student" style="font-size: 16px; padding: 5px;">
         {% for student in all_students %}
         <!-- <h1>student.mis</h1> -->
-          <option value="{{ student.mis }}">{{ student.Name }}</option>
+        <option value="{{ student.mis }}">{{ student.Name }}</option>
         {% endfor %}
       </select>
       <br><br>
       <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
-      <input type="submit" name="submit" value="increase count" onclick="return confirm('Are you sure you want to increase the meal count?')" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
+      <input type="submit" name="increase_count" value="increase_count"
+        onclick="return confirm('Are you sure you want to increase the meal count?')"
+        style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
     </form>
 
-    <div>
-      <h1>All Feedbacks</h1>
-      <table id="feedback-table">
-          <thead>
-              <tr>
-                  <th>Feedback</th>
-                  <th>Date</th>
-              </tr>
-          </thead>
-          <tbody>
-              {% for feedback in all_feedback %}
-              <tr>
-                  <td>{{ feedback.feedback }}</td>
-                  <td>{{ feedback.date }}</td>
-              </tr>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form class="p-5 bg-light rounded" action="#" method="POST">
+            <h3 class="text-center mb-4">Breakfast Selection</h3>
+            
+            <label for="student" style="font-size: 18px;">Select student:</label>
+            <input type="text" id="search" name="search" placeholder="Search student name"
+              style="font-size: 16px; padding: 5px; margin-left: 10px;">
+            <select name="student" id="student" style="font-size: 16px; padding: 5px;">
+              {% for student in all_students %}
+              <option value="{{ student.id }}">{{ student.Name }}</option>
               {% endfor %}
-          </tbody>
-      </table>
+            </select>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="breakfast[]" id="tea" value="tea">
+              <label class="form-check-label" for="tea">Tea</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="breakfast[]" id="code-milk" value="code-milk">
+              <label class="form-check-label" for="code-milk">Code Milk</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="breakfast[]" id="born-vita" value="born-vita">
+              <label class="form-check-label" for="born-vita">Born Vita</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="breakfast[]" id="biscuits" value="biscuits">
+              <label class="form-check-label" for="biscuits">Biscuits</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
-    
+
+    <h1>All Feedbacks</h1>
+    <table id="feedback-table">
+      <thead>
+        <tr>
+          <th>Feedback</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for feedback in all_feedback %}
+        <tr>
+          <td>{{ feedback.feedback }}</td>
+          <td>{{ feedback.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </di>
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script>
-      const searchInput = document.getElementById('search');
-      const select = document.getElementById('student');
-      const options = select.options;
-    
-      searchInput.addEventListener('input', (e) => {
-        const searchText = e.target.value.toLowerCase();
-        for (let i = 0; i < options.length; i++) {
-          const optionText = options[i].text.toLowerCase();
-          if (optionText.includes(searchText)) {
-            options[i].hidden = false;
-          } else {
-            options[i].hidden = true;
-          }
+  <script>
+    const searchInput = document.getElementById('search');
+    const select = document.getElementById('student');
+    const options = select.options;
+
+    searchInput.addEventListener('input', (e) => {
+      const searchText = e.target.value.toLowerCase();
+      for (let i = 0; i < options.length; i++) {
+        const optionText = options[i].text.toLowerCase();
+        if (optionText.includes(searchText)) {
+          options[i].hidden = false;
+        } else {
+          options[i].hidden = true;
         }
-      });
-    </script>
-    <script>
-      alert('{{ message }}');
-    </script>
+      }
+    });
+  </script>
+  <script>
+    alert('{{ message }}');
+  </script>
 </body>
 
 </html>

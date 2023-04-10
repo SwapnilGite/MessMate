@@ -10,11 +10,10 @@ from email.policy import default
 from random import choices
 from django.db import models
 
+# from messadmin.models import Mess
 # Create your models here.
 
 class Mess(models.Model):
-    
-   
     MESS_CHOICES = (
     ("FY", "FY"),
     ("SY", "SY"),
@@ -27,8 +26,9 @@ class Mess(models.Model):
     def __str__(self):
         return self.Mess_name
     
-
-    
-    
-    
-    
+class Feedback(models.Model):
+    feedback = models.CharField(max_length=50)
+    date = models.DateTimeField(auto_now_add=True)
+    Mess=models.ForeignKey(Mess,on_delete=models.CASCADE,default=None)
+    def __str__(self):
+        return str(self.date)
