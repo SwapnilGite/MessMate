@@ -88,53 +88,62 @@
     {% endif %}
   </div>
   <div class="my-5 mx-4">
-    <!-- class Menu(models.Model):
-    
-        Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
-        Brekfast = models.CharField(max_length=50)
-        VegLunch = models.CharField(max_length=50,default=None)
-        NonVegLunch = models.CharField(max_length=50,default=None)
-        Dinner = models.CharField(max_length=50,default=None)
-        NonVegDinner = models.CharField(max_length=50,default=None)
-        EveSnacks = models.CharField(max_length=50)
-        date = models.DateTimeField(default=timezone.now)
-    
+   
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <form name="update_menu" method="post" action="/MessAdminLogin/adminDashboard/" class="p-4 rounded bg-light">
+            {% csrf_token %}
+            <h3 class="mb-4 text-center">Add Menu</h3>
+            <div class="mb-3">
+              <label for="Breakfast" class="form-label">Morning Breakfast</label>
+              <input type="text" name="Breakfast" class="form-control" id="Breakfast" aria-describedby="emailHelp" value="{{ today_menu.Breakfast }}">
+            </div>
+            <div class="mb-3">
+              <label for="VegLunch" class="form-label">Veg Lunch Menu</label>
+              <input type="text" name="VegLunch" class="form-control" id="VegLunch" aria-describedby="emailHelp" value="{{ today_menu.VegLunch }}">
+            </div>
+            <div class="mb-3">
+              <label for="NonVegLunch" class="form-label">Non-Veg Lunch Menu</label>
+              <input type="text" name="NonVegLunch" class="form-control" id="NonVegLunch" aria-describedby="emailHelp" value="{{ today_menu.NonVegLunch }}">
+            </div>
+            <div class="mb-3">
+              <label for="EveSnacks" class="form-label">Evening Snacks</label>
+              <input type="text" name="EveSnacks" class="form-control" id="EveSnacks" value="{{ today_menu.EveSnacks }}">
+            </div>
+            <div class="mb-3">
+              <label for="VegDinner" class="form-label">Veg Dinner</label>
+              <input type="text" name="VegDinner" class="form-control" id="VegDinner" value="{{ today_menu.VegDinner }}">
+            </div>
+            <div class="mb-3">
+              <label for="NonVegDinner" class="form-label">Non-Veg Dinner</label>
+              <input type="text" name="NonVegDinner" class="form-control" id="NonVegDinner" value="{{ today_menu.NonVegDinner }}">
+            </div>
+            <button type="submit" name="update_menu" value="update_menu" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Today's Menu - {{ today_date }}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Today's Specials</h5>
+              <ul>
+                <li>{{ today_menu.Breakfast }}</li>
+                <li>{{ today_menu.VegLunch }}</li>
+                <li>{{ today_menu.NonVegLunch }}</li>
+                <li>{{ today_menu.EveSnacks }}</li>
+                <li>{{ today_menu.VegDinner }}</li>
+                <li>{{ today_menu.NonVegDinner }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
         
-        def __str__(self):
-            return self.date+self.Messname -->
-    <form name="update_menu" method="post" action="/MessAdminLogin/adminDashboard/">
-      {% csrf_token %}
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Morning Breakfast</label>
-        <input type="text" name="Breakfast" class="form-control" id="Breakfast" aria-describedby="emailHelp"
-          value="{{ today_menu.Breakfast }}">
-        <div id="emailHelp" class="form-text"></div>
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Veg Lunch Menu</label>
-        <input type="text" name="VegLunch" class="form-control" id="VegLunch" aria-describedby="emailHelp"
-          value="{{ today_menu.VegLunch }}">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Lunch Menu</label>
-        <input type="text" name="NonVegLunch" class="form-control" id="NonVegLunch" aria-describedby="emailHelp"
-          value="{{ today_menu.NonVegLunch }}">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Evening Snacks</label>
-        <input type="text" name="EveSnacks" class="form-control" id="EveSnacks" value="{{ today_menu.EveSnacks }}">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Veg Dinner </label>
-        <input type="text" name="VegDinner" class="form-control" id="Dinner" value="{{ today_menu.VegDinner }}">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Non Veg Dinner </label>
-        <input type="text" name="NonVegDinner" class="form-control" id="Dinner" value="{{ today_menu.NonVegDinner }}">
-      </div>
-
-      <button type="submit" name="update_menu" value="update_menu" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+    
 
 
     <!-- <form method="post" action="/MessAdminLogin/adminDashboard/" name="increase_count" style="background-color: #f2f2f2; padding: 20px;">
@@ -148,26 +157,24 @@
       <br><br>
       <input type="submit" name="submit" value="Increase count" onclick="return confirm('Are you sure you want to increase the meal count?')" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
     </form> -->
-    <form name="increase_count" method="post" action="/MessAdminLogin/adminDashboard/"
-      style="background-color: #f2f2f2; padding: 20px;">
+    <form name="increase_count" method="post" action="/MessAdminLogin/adminDashboard/" class="bg-light p-4">
       {% csrf_token %}
-      <label for="student" style="font-size: 18px;">Select student:</label>
-      <input type="text" id="search" name="search" placeholder="Search student name"
-        style="font-size: 16px; padding: 5px; margin-left: 10px;">
-      <select name="student" id="student" style="font-size: 16px; padding: 5px;">
-        {% for student in all_students %}
-        <!-- <h1>student.mis</h1> -->
-        <option value="{{ student.mis }}">{{ student.Name }}</option>
-        {% endfor %}
-      </select>
-      <br><br>
-      <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-
-      <input type="submit" name="increase_count" value="increase_count"
-        onclick="return confirm('Are you sure you want to increase the meal count?')"
-        style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
+      <h3 class="mb-4">Add Meal Count</h3>
+      <div class="form-group">
+        <label for="search" class="d-block">Search student name:</label>
+        <input type="text" id="search" name="search" class="form-control d-inline-block w-50 mr-2" style="font-size: 16px;">
+      </div>
+      <div class="form-group">
+        <label for="student" class="d-block">Select student:</label>
+        <select name="student" id="student" class="form-control d-inline-block w-50" style="font-size: 16px;">
+          {% for student in all_students %}
+          <option value="{{ student.mis }}">{{ student.Name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit"  name="increase_count" value="increase_count" class="btn btn-success" onclick="return confirm('Are you sure you want to increase the meal count?')">Increase Count</button>
     </form>
-
+    
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
