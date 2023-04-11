@@ -12,12 +12,7 @@ from datetime import date
 from student.models import Student
 from administrator.models import Feedback
 import datetime
-# from student.models import Feedback
-# from quiz.models import Course
-# from quiz.models import Quiz
-# from quiz.models import Question
-# from quiz.models import Result
-# from faculty.models import Faculty
+from messadmin.models import BfRecord
 
 def MessadminLogin(request):
     if request.method=="POST":
@@ -129,85 +124,46 @@ def adminDashboard(request):
                 print("Menu updated")
                 
             return redirect('adminDashboard')
+        
+        if "add_breakfast" in request.POST:
+            student_mis = request.POST.get('student')
+            print("Fdfsfsf",student_mis)
+            student = Student.objects.filter(mis=student_mis)[0]
+            print("student ",student.Name)
+            admin_id=request.user.username
+            mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
+            Mess_=mess_admin.Mess
+            current_month = datetime.date.today().strftime("%B")
+            
+            breakfast=request.POST.getlist('breakfast[]')
+            breakfast_bill=0;
+            for i in breakfast: 
+                if i=='tea':
+                    breakfast_bill+=11
+                if i=="code-milk":
+                    breakfast_bill+=20
+                if i=="born-vita":
+                    breakfast_bill+=20
+                    
+                if i=="biscuits":
+                    breakfast_bill+=5
+                print("breakfast_bill",breakfast_bill)
+            try:
+                bf_record = BfRecord.objects.get(Student=student, month=current_month)
+                bf_record.Messname=Mess_
+                bf_record.amount += breakfast_bill
+                bf_record.Messname=Mess_
+                bf_record.Student=student
+                bf_record.save()
+                message =  f" Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
+                print(message)
+            except BfRecord.DoesNotExist:
+                bf_record = BfRecord.objects.create(Student=student,month=current_month,Messname=Mess_,amount=breakfast_bill)
+                bf_record.save()
+                message = f" new : Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
+                print(message)
+            
     return render(request, "messadmin/mess_admindash.html",my_dict)
-
-
-    # if request.method == 'POST' and 'update_menu' in request.POST:
-    # # and 'increase_count' in request.POST:
-        
-    #     print("Ïnserted")
-    #     student_mis = request.POST.get('student')
-    #     print(student_mis)
-    #     student = Student.objects.filter(mis=student_mis)[0]
-        
-    #     admin_id=request.user.username
-    #     mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
-    #     Mess_=mess_admin.Mess
-    #     current_month = datetime.date.today().strftime("%B")
-    #     print("month")
-    #     print(current_month)
-    #     # check if a meal record for this student and month already exists
-    #     try:
-    #         meal_record = MealRecord.objects.get(Student=student, month=current_month)
-    #         meal_record.Messname=Mess_
-    #         meal_record.mealcount += 1
-    #         meal_record.Messname=Mess_
-    #         meal_record.Student=student
-    #         meal_record.save()
-    #         message = f"Meal count for {student.Name} increased to {meal_record.mealcount} for {current_month}"
-    #         print(message)
-    #     except MealRecord.DoesNotExist:
-    #         meal_record = MealRecord.objects.create(Student=student,month=current_month,Messname=Mess_)
-    #         meal_record.save()
-    #         message = f"Meal count for {student.Name} set to 1 for {current_month}"
-    #         print(message)
-            
-    #     return render(request, 'messadmin/mess_admindash.html',my_dict)
-    
-    # if request.method == "POST"  and 'update_menu' in request.POST:
-    #     # get the current user's MessAdmin object
-    #     print(2)
-    #     current_user = request.user.username
-      
-    #     admin = MessAdmin.objects.get(Admin_id=current_user)
-    #     Mess = admin.Mess
-
-    #     # get the menu data from the POST request
-    #     breakfast = request.POST.get('Breakfast', '')
-    #     veg_lunch = request.POST.get('VegLunch', '')
-    #     non_veg_lunch = request.POST.get('NonVegLunch', '')
-    #     veg_dinner = request.POST.get('VegDinner', '') # fixed variable name
-    #     non_veg_dinner = request.POST.get('NonVegDinner', '') # fixed variable name
-    #     eve_snacks = request.POST.get("EveSnacks", '')
-
-    #     # get the current date
-    #     today = date.today()
-
-    #     # check if a Menu object already exists for this Mess and date
-    #     try:
-    #         menu = Menu.objects.get(date=today, Mess=Mess)
-    #     except Menu.DoesNotExist:
-    #         # if no Menu object exists, create a new one and save it
-    #         menu = Menu(Mess=Mess, Breakfast=breakfast, VegLunch=veg_lunch, NonVegLunch=non_veg_lunch, VegDinner=veg_dinner, NonVegDinner=non_veg_dinner, EveSnacks=eve_snacks, date=today)
-    #         menu.save()
-    #         print("New menu created")
-    #     else:
-    #         # if a Menu object already exists, update it
-    #         menu.Breakfast = breakfast
-    #         menu.VegLunch = veg_lunch
-    #         menu.NonVegLunch = non_veg_lunch
-    #         menu.VegDinner = veg_dinner
-    #         menu.NonVegDinner = non_veg_dinner
-    #         menu.EveSnacks = eve_snacks
-    #         menu.save()
-    #         print("Menu updated")
-            
-    #     return redirect('adminDashboard')
-    
-    
-    # else:
-    #     students = Student.objects.all()
-    #     return render(request, 'meal_count.html', {'students': students})
 
 
 def messadminRegister(request):
