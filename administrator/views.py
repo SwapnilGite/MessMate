@@ -7,31 +7,32 @@ from messadmin.models import Mess
 from messadmin.models import Menu
 from django.template import loader
 from django.utils import timezone
-from datetime import date
+from datetime import date,timedelta
 
-# def fyMenu(request):
-#     fymenu=Menu.objects.filter(Mess='FY')[0]
-#     fymess = {
-#         "fymenu": fymenu
-#     }
-#     print(fymess['fymenu'].VegLunch)
-#     return render(request,'administrator/index.html',fymess)
 
-# def SyMenu(request):
-#     symenu=Menu.objects.filter(Mess='SY')[0]
-#     symess = {
-#         "symenu": symenu
-#     }
-#     print(symess['symenu'].NonVegLunch)
-#     return render(request,'administrator/index.html',symess)
 def home(request):
     
     dict={}
-    
-    fymenu=Menu.objects.filter(Mess='FY',date=date.today())[0]
-    symenu=Menu.objects.filter(Mess='SY',date=date.today())[0]
-    tymenu=Menu.objects.filter(Mess='TY',date=date.today())[0]
-    btechmenu=Menu.objects.filter(Mess='BTech',date=date.today())[0]
+    try:
+        fymenu=Menu.objects.filter(Mess='FY',date=date.today())[0]
+    except:
+        fymenu=Menu.objects.filter(Mess='FY',date=date.today()-timedelta(days=1))[0]
+        
+    try:
+        symenu=Menu.objects.filter(Mess='SY',date=date.today())[0]
+    except:
+        symenu=Menu.objects.filter(Mess='SY',date=date.today()-timedelta(days=1))[0]
+        
+    try:
+        tymenu=Menu.objects.filter(Mess='TY',date=date.today())[0]
+    except:
+        tymenu=Menu.objects.filter(Mess='TY',date=date.today()-timedelta(days=1))[0]
+        
+    try:
+        btechmenu=Menu.objects.filter(Mess='BTech',date=date.today())[0]
+    except:
+        btechmenu=Menu.objects.filter(Mess='BTech',date=date.today()-timedelta(days=1))[0]
+  
     
     print(fymenu)
     print(symenu)
