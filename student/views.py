@@ -89,7 +89,10 @@ def studentRegister(request):
     else:
         return render(request, "student/studentregister.html")
 
-# def studentAfterLogin(request):
-#     return render(request,"student/studentAfterLogin.html");
+
+def student_logout(request):
+    logout(request)
+    messages.success(request, "Successfully logged out")
+    return redirect("studentLogin")
 
 

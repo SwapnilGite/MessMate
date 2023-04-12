@@ -8,6 +8,7 @@ from messadmin.models import Menu
 from administrator.models import Mess
 from messadmin.models import MealRecord
 from django.contrib.auth.models import Group
+import datetime
 from datetime import date
 from student.models import Student
 from administrator.models import Feedback
@@ -27,7 +28,6 @@ def MessadminLogin(request):
             login(request, user)
             return redirect("adminDashboard")
         else:
-            
             return render(request,"messadmin/mess_adminlogin.html")
 
     return render(request,"messadmin/mess_adminlogin.html")
@@ -75,7 +75,8 @@ def adminDashboard(request):
             admin_id=request.user.username
             mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
             Mess_=mess_admin.Mess
-            current_month = datetime.date.today().strftime("%B")
+            today_date = date.today()
+            current_month = today_date.strftime("%B")
             print("month")
             print(current_month)
             # check if a meal record for this student and month already exists
@@ -137,13 +138,15 @@ def adminDashboard(request):
         
         if "add_breakfast" in request.POST:
             student_mis = request.POST.get('student')
-            print("Fdfsfsf",student_mis)
             student = Student.objects.filter(mis=student_mis)[0]
             print("student ",student.Name)
             admin_id=request.user.username
             mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
             Mess_=mess_admin.Mess
-            current_month = datetime.date.today().strftime("%B")
+            # get the current date
+            today = date.today()
+
+            current_month = today.strftime("%B")
             
             breakfast=request.POST.getlist('breakfast[]')
             breakfast_bill=0;

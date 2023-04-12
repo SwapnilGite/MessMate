@@ -71,7 +71,7 @@ class MealRecord(models.Model):
     Meal_id = models.AutoField(primary_key=True)
     Student=models.ForeignKey(Student,on_delete=models.CASCADE,default=None)
     Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
-    mealcount = models.IntegerField(default=0);
+    mealcount = models.IntegerField(default=1);
     month = models.CharField(max_length=50,choices=months,default=None)
     
     def __str__(self):

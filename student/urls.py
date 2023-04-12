@@ -8,9 +8,9 @@ urlpatterns = [
     path('',views.studentLogin,name='studentLogin'),
     path('studentRegister/',views.studentRegister,name='studentRegister'),
     path('studentAfterLogin/',views.studentAfterLogin,name='studentAfterLogin'),
+    path('student_logout/',views.student_logout,name='student_logout'),
     # path('studentQuiz/',views.studentQuiz,name='studentQuiz'),
     # path('AttemptQuiz',views.AttemptQuiz,name='AttemptQuiz'),
     # path('GenerateResult',views.GenerateResult,name='GenerateResult'),
-    # path('student_logout/',views.student_logout,name='student_logout'),
     # path('grades/',views.grades,name='grades'),
 ]

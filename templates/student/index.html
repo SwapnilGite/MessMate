@@ -194,7 +194,7 @@
                   </li>
                   <li>
                     <div class="user_option">
-                      <a href="#" class="order_online">
+                      <a href="/studentLogin/student_logout" onclick="confirmLogout()"  class="order_online">
                         Sign Out
                       </a>
                     </div>
@@ -216,16 +216,10 @@
                     <div class="col-md-7 col-lg-6 ">
                       <div class="detail-box">
                         <h1>
-                          MessMate
+                          Hello {{ current_student.Name }}
                         </h1>
-                        <p>
-                          Explore food menus from all mess around you !!
-                        </p>
-                        <div class="btn-box">
-                          <a href="#food_section" class="btn1">
-                            Explore Now
-                          </a>
-                        </div>
+                       
+                   
                       </div>
                     </div>
                   </div>
@@ -243,8 +237,8 @@
                           Track your meals online !!
                         </p>
                         <div class="btn-box">
-                          <a href="#" class="btn1">
-                            Sign Out
+                          <a href="/studentLogin/student_logout" onclick="confirmLogout()" class="btn1">
+                            Sign Out 
                           </a>
                         </div>
                       </div>
@@ -375,7 +369,7 @@
 
         </div>
     </div>
-    <form class="feedback-form" action="/studentLogin/studentAfterLogin/" method="post" id="feedback_form" >
+    <form class="feedback-form" method="post" action="/studentLogin/studentAfterLogin/"  id="feedback_form" >
       {% csrf_token %}
       <label for="feedback">Feedback:</label>
       <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want." id="feedback" name="feedback" rows="5" required></textarea>
@@ -391,7 +385,19 @@
             event.preventDefault();
           }
         });
+        function confirmLogout() {
+          var confirmation = confirm("Are you sure you want to log out?");
+          if (confirmation === true) {
+            // The user clicked "OK", so proceed with the logout
+            alert("Thank You {{ current_student.Name }},You have been logged out.");
+          } else {
+            // The user clicked "Cancel", so do nothing
+            event.preventDefault();
+          }
+        }
+
       </script>
+     
     <!-- jQery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
