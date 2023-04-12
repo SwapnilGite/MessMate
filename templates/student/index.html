@@ -7,9 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap 4.5.2 JS bundle (popper.js & jquery.js included) -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
-    <script src="https:// cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <script src="https:// cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <meta name="author" content="" />
+    {% load static %}
+    <link rel="shortcut icon" href="{% static "student/images/favicon.png" %}" type="">
+  
+    <title> Feane </title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.usebootstrap.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+      integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+      crossorigin="anonymous" />
+    <!-- font awesome style -->
+    {% load static %}
+    <link type="text/css" href="{% static "student/css/font-awesome.min.css" %}" rel="stylesheet" />
+  
+    <!-- Custom styles for this template -->
+    {% load static %}
+    <link type="text/css" href="{% static "student/css/style.css" %}" rel="stylesheet" />
+    <!-- responsive style -->
+    {% load static %}
+    <link type="text/css" href="{% static "student/css/responsive.css" %}" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
     <style>
         /* Custom CSS for card styling */
@@ -139,7 +164,7 @@
     <div class="hero_area">
         <div class="bg-box">
           {% load static %}
-          <img src="{% static "administrator/images/1.jpg" %}" alt="">
+          <img src="{% static "student/images/1.jpg" %}" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
@@ -249,10 +274,10 @@
                     <div class="card-body">
                         <h1 class="card-title">Your details</h1>
                         <div class="details">
-                            <h2>Name: Swapnil Gite</h2>
-                            <h2>MIS: 112003046</h2>
-                            <h2>Branch: Computer Engineering</h2>
-                            <h2>Mess Enrolled: T.Y Mess</h2>
+                            <h2>Name: {{ current_student.Name }}</h2>
+                            <h2>MIS: {{ current_student.mis }}</h2>
+                            <h2>Branch: {{ current_student.Dept }}</h2>
+                            <h2>Mess Enrolled: {{ current_student.Mess }}</h2>
                             <h2 style="display: inline;">Unpaid Bill: Rs. 2500 /-</h2>
                             <button id="payment">Pay Now</button>
                         </div>
@@ -350,17 +375,45 @@
 
         </div>
     </div>
-    <form class="feedback-form">
-        <label for="feedback">Feedback:</label>
-        <textarea id="feedback" name="feedback" rows="5" required></textarea>
-        <input type="submit" value="Submit">
-    </form>
+    <form class="feedback-form" action="/studentLogin/studentAfterLogin/" method="post" id="feedback_form" >
+      {% csrf_token %}
+      <label for="feedback">Feedback:</label>
+      <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want." id="feedback" name="feedback" rows="5" required></textarea>
+      <input type="submit" name="feedback_form" value="Submit">
+  </form>
     <footer class="copyright">
         &copy; 2023 MessMate. All rights reserved.
       </footer>
+      <script>
+        document.getElementById("feedback_form").addEventListener("submit", function(event) {
+          var confirmation = confirm("Are you sure you want to submit the feedback?");
+          if (confirmation !== true) {
+            event.preventDefault();
+          }
+        });
+      </script>
+    <!-- jQery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<!-- popper js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+<!-- owl slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+</script>
 
-    <script>
-    </script>
+<!-- isotope js -->
+<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+<!-- nice select -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+<!-- custom js -->
+{% load static %}
+<script src="{% static "administrator/js/custom.js" %} "></script>
 
 </body>
 

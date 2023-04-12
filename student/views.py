@@ -6,13 +6,9 @@ from django.contrib.auth  import authenticate,  login, logout
 from student.models import Student
 from django.contrib.auth.models import Group
 from django.contrib import messages
-# from quiz.models import Quiz
-# from quiz.models import Result
-# from quiz.models import Question
-import datetime
-quiz_dict={}
-Quiz_dict={}
-
+from administrator.models import Feedback
+from datetime import date, timedelta
+from messadmin.models import Mess
 
 def studentLogin(request):
     if request.method=="POST":
@@ -26,14 +22,34 @@ def studentLogin(request):
         if user is not None:
             print("Hello World\n");
             login(request, user)
-            # return HttpResponse("Student Login\n");
+            
             return redirect("studentAfterLogin")
         else:
-            # loginstatus={"valid":0}
-            # return render(request,"student/studentlogin.html",loginstatus)
             return render(request,"student/studentlogin.html")
 
     return render(request,"student/studentlogin.html")
+
+def studentAfterLogin(request):
+    current_user = request.user.username
+    print("current_user",current_user)
+    current_student=Student.objects.filter(mis=current_user)[0]
+    my_dict = {
+    "current_student": current_student,
+    }
+    
+    if request.method == "POST":
+        if "feedback_form" in request.POST:
+            feedback = request.POST.get('feedback', '')
+            today_date = date.today()
+            Mess_name = current_student.Mess
+            Mess_=Mess.objects.filter(Mess_name=Mess_name)[0]
+            feed = Feedback.objects.create(feedback=feedback, date=today_date, Mess=Mess_)
+            feed.save()
+            print("Feedback added")
+    return render(request,"student/index.html",my_dict)
+            
+                
+
 
 def studentRegister(request):
        
@@ -73,7 +89,7 @@ def studentRegister(request):
     else:
         return render(request, "student/studentregister.html")
 
-def studentAfterLogin(request):
-    return render(request,"student/studentAfterLogin.html");
+# def studentAfterLogin(request):
+#     return render(request,"student/studentAfterLogin.html");
 
 

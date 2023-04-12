@@ -107,7 +107,7 @@ def adminDashboard(request):
             breakfast = request.POST.get('Breakfast', '')
             veg_lunch = request.POST.get('VegLunch', '')
             non_veg_lunch = request.POST.get('NonVegLunch', '')
-            veg_dinner = request.POST.get('VegDinner', '') # fixed variable name
+            veg_dinner = request.POST.get('VegDinner', '')  # fixed variable name
             non_veg_dinner = request.POST.get('NonVegDinner', '') # fixed variable name
             eve_snacks = request.POST.get("EveSnacks", '')
 
