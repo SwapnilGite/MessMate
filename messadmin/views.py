@@ -11,7 +11,7 @@ from django.contrib.auth.models import Group
 from datetime import date
 from student.models import Student
 from administrator.models import Feedback
-import datetime
+from datetime import datetime, timedelta
 from messadmin.models import BfRecord
 
 def MessadminLogin(request):
@@ -33,7 +33,7 @@ def MessadminLogin(request):
     return render(request,"messadmin/mess_adminlogin.html")
 
 def adminDashboard(request):
-    print(1)
+    
     admin_id=request.user.username
     mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
     print(mess_admin.Name)
@@ -41,8 +41,15 @@ def adminDashboard(request):
     print(Mess_)
     all_students=Student.objects.filter(Mess=Mess_)
     print(all_students)
+ 
     
-    today_menu=Menu.objects.filter(Mess=Mess_,date=date.today())[0]
+    try:
+        today_menu=Menu.objects.filter(Mess=Mess_,date=date.today())[0]
+    except:
+        today_menu=Menu.objects.filter(Mess=Mess_,date=date.today()-timedelta(days=1))[0]
+
+
+        
     print("dffd",today_menu.Breakfast)
     
     all_feedbacks=Feedback.objects.filter(Mess=mess_admin.Mess);
@@ -54,6 +61,9 @@ def adminDashboard(request):
     "today_menu" : today_menu,
     }
     # print("Fdd")increase_count update_menu
+    
+  
+        
     if request.method == "POST":
         print("Ïnserted")
         print(request.POST)
