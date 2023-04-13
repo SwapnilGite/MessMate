@@ -13,25 +13,23 @@ from datetime import date,timedelta
 def home(request):
     
     dict={}
-    try:
-        fymenu=Menu.objects.filter(Mess='FY',date=date.today())[0]
-    except:
-        fymenu=Menu.objects.filter(Mess='FY',date=date.today()-timedelta(days=1))[0]
+    fymenu=Menu.objects.filter(Mess='FY')[0]
+    
+    # fymenu=Menu.objects.filter(Mess='FY')[0]
         
-    try:
-        symenu=Menu.objects.filter(Mess='SY',date=date.today())[0]
-    except:
-        symenu=Menu.objects.filter(Mess='SY',date=date.today()-timedelta(days=1))[0]
+   
+    symenu=Menu.objects.filter(Mess='SY')[0]
+
+    # symenu=Menu.objects.filter(Mess='SY')[0]
         
-    try:
-        tymenu=Menu.objects.filter(Mess='TY',date=date.today())[0]
-    except:
-        tymenu=Menu.objects.filter(Mess='TY',date=date.today()-timedelta(days=1))[0]
+   
+    tymenu=Menu.objects.filter(Mess='TY')[0]
+    
+    # tymenu=Menu.objects.filter(Mess='TY')[0]
         
-    try:
-        btechmenu=Menu.objects.filter(Mess='BTech',date=date.today())[0]
-    except:
-        btechmenu=Menu.objects.filter(Mess='BTech',date=date.today()-timedelta(days=1))[0]
+   
+    btechmenu=Menu.objects.filter(Mess='BTech')[0]
+   
   
     
     print(fymenu)
