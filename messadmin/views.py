@@ -43,10 +43,9 @@ def adminDashboard(request):
     print(all_students)
  
     
-    try:
-        today_menu=Menu.objects.filter(Mess=Mess_,date=date.today())[0]
-    except:
-        today_menu=Menu.objects.filter(Mess=Mess_,date=date.today()-timedelta(days=1))[0]
+    
+    today_menu=Menu.objects.filter(Mess=Mess_)[0]
+  
 
 
         
@@ -117,7 +116,7 @@ def adminDashboard(request):
 
             # check if a Menu object already exists for this Mess and date
             try:
-                menu = Menu.objects.get(date=today, Mess=Mess)
+                menu = Menu.objects.get(Mess=Mess)
             except Menu.DoesNotExist:
                 # if no Menu object exists, create a new one and save it
                 menu = Menu(Mess=Mess, Breakfast=breakfast, VegLunch=veg_lunch, NonVegLunch=non_veg_lunch, VegDinner=veg_dinner, NonVegDinner=non_veg_dinner, EveSnacks=eve_snacks, date=today)
@@ -196,7 +195,7 @@ def messadminRegister(request):
         print("pass1 : ",pass1)
         print("email : ",email)
         
-        MessAd =MessAdmin(Admin_id=Admin_id,Name=Name,Mess_name=Mess_,pass1=pass1,email=email)
+        MessAd =MessAdmin(Admin_id=Admin_id,Name=Name,Mess=Mess_,pass1=pass1,email=email)
         MessAd.save()
         
         
