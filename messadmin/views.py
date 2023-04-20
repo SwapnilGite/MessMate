@@ -14,7 +14,7 @@ from student.models import Student
 from administrator.models import Feedback
 from datetime import datetime, timedelta
 from messadmin.models import BfRecord
-
+from messadmin.models import Bill
 def MessadminLogin(request):
     if request.method=="POST":
         # Get the post parameters
@@ -90,6 +90,7 @@ def adminDashboard(request):
                 print(message)
             except MealRecord.DoesNotExist:
                 meal_record = MealRecord.objects.create(Student=student,month=current_month,Messname=Mess_)
+                meal_record.save()
                 meal_record.save()
                 message = f"Meal count for {student.Name} set to 1 for {current_month}"
                 print(message)

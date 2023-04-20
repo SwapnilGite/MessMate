@@ -9,6 +9,9 @@ from django.contrib import messages
 from administrator.models import Feedback
 from datetime import date, timedelta
 from messadmin.models import Mess
+from messadmin.models import MealRecord
+from messadmin.models import BfRecord
+from messadmin.models import Bill
 
 def studentLogin(request):
     if request.method=="POST":
@@ -46,6 +49,59 @@ def studentAfterLogin(request):
             feed = Feedback.objects.create(feedback=feedback, date=today_date, Mess=Mess_)
             feed.save()
             print("Feedback added")
+        
+        if "feepaid_form" in request.POST:                        
+            amountPaid = request.POST.get('amountPaid', '')
+            Trno = request.POST.get('Trno', '')
+            month=request.POST.get('month','')
+            meal=MealRecord.objects.filter(Student=current_student,month=month)[0];
+            amountPaid=int(amountPaid)
+           
+      
+
+            meal.bill_paid=int(amountPaid)+meal.bill_paid
+            meal.save()
+            
+
+            
+        
+        if "history_form" in request.POST:
+            
+            month=request.POST.get('month','')
+            print("month choosen ",month)
+            components = {
+                "month":month,
+                "current_student": current_student,
+                "mealcount": 0,
+                "breakfast_cost": 0,
+                "total_bill": 0,
+                "bill_paid": 0,
+                "unpaidbill": 0,
+            }
+            try:
+                meal=MealRecord.objects.filter(Student=current_student,month=month)[0];
+                breakfast=BfRecord.objects.filter(Student=current_student,month=month)[0];
+                mealcount=meal.mealcount
+                breakfast_cost=breakfast.amount
+                total_bill=40*mealcount+breakfast_cost
+                meal.total_bill=total_bill
+                bill_paid=meal.bill_paid
+                # bill_paid=0
+                # bill = Bill.objects.get(Meal_id=meal, Bf_id=breakfast, month=month)
+                # bill.total_bill = total_bill
+                # bill_paid=bill.bill_paid
+                
+                components['mealcount']=mealcount;
+                components['total_bill']=total_bill
+                components["breakfast_cost"]=breakfast_cost
+                components["bill_paid"]=bill_paid
+                components["unpaidbill"]=total_bill-bill_paid
+                return render(request,"student/index.html",components)
+                
+            except IndexError:
+                return render(request,"student/index.html",components)
+
+
     return render(request,"student/index.html",my_dict)
             
                 

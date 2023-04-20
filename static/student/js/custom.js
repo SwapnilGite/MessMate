@@ -7,6 +7,12 @@ function getYear() {
 
 getYear();
 
+        // Wait for the page to finish loading
+        // $(document).ready(function() {
+        //   // Show the modal when the "Pay Now" button is clicked
+         
+        // });
+     
 
 // isotope js
 $(window).on('load', function () {
@@ -32,6 +38,7 @@ $(window).on('load', function () {
 // nice select
 $(document).ready(function() {
     $('select').niceSelect();
+    
   });
 
 /** google_map js **/

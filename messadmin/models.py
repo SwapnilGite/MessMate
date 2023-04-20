@@ -73,6 +73,8 @@ class MealRecord(models.Model):
     Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
     mealcount = models.IntegerField(default=1);
     month = models.CharField(max_length=50,choices=months,default=None)
+    total_bill=models.IntegerField(default=0)
+    bill_paid=models.IntegerField(default=0)
     
     def __str__(self):
         return str(self.Student.Name)+" "+str(self.month)

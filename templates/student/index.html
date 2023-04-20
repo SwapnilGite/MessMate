@@ -2,424 +2,605 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>MessMate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap 4.5.2 JS bundle (popper.js & jquery.js included) -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="https:// cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-    <meta name="author" content="" />
-    {% load static %}
-    <link rel="shortcut icon" href="{% static "student/images/favicon.png" %}" type="">
-  
-    <title> Feane </title>
-  
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.usebootstrap.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  
-    <!--owl slider stylesheet -->
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <!-- nice select  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
-      integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
-      crossorigin="anonymous" />
-    <!-- font awesome style -->
-    {% load static %}
-    <link type="text/css" href="{% static "student/css/font-awesome.min.css" %}" rel="stylesheet" />
-  
-    <!-- Custom styles for this template -->
-    {% load static %}
-    <link type="text/css" href="{% static "student/css/style.css" %}" rel="stylesheet" />
-    <!-- responsive style -->
-    {% load static %}
-    <link type="text/css" href="{% static "student/css/responsive.css" %}" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <meta charset="UTF-8">
+  <title>MessMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 4.5.2 JS bundle (popper.js & jquery.js included) -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
+  <!-- <script src="https:// cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+  <meta name="author" content="" />
+  {% load static %}
+  <link rel="shortcut icon" href="{% static "student/images/favicon.png" %}" type="">
 
-    <style>
-        /* Custom CSS for card styling */
+  <title> Feane </title>
 
-        .feedback-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        .feedback-form label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .feedback-form input[type="text"],
-        .feedback-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-        }
-        .feedback-form input[type="submit"] {
-            display: block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .feedback-form input[type="submit"]:hover {
-            background-color: #0062cc;
-        }
-        .card {
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease-in-out;
-            padding: 10px;
-            max-height: 36vh;
-            overflow: scroll;
-        }
-        .card:hover {
-            transform: scale(1.02);
-        }
-        .details {
-            text-align: left;
-        }
-        #payment {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-        #payment:hover {
-            background-color: rgb(173, 73, 73);
-            box-shadow: 0px 0px 10px rgba(92, 6, 6, 0.2);
-            cursor: pointer;
-        }
-        /* Custom CSS for column styling */
-        .column {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #f5f5f5;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.usebootstrap.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
-        .column h5 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+    integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+    crossorigin="anonymous" />
+  <!-- font awesome style -->
+  {% load static %}
+  <link type="text/css" href="{% static "student/css/font-awesome.min.css" %}" rel="stylesheet" />
 
-        .column p {
-            margin-bottom: 0;
-        }
+  <!-- Custom styles for this template -->
+  {% load static %}
+  <link type="text/css" href="{% static "student/css/style.css" %}" rel="stylesheet" />
+  <!-- responsive style -->
+  {% load static %}
+  <link type="text/css" href="{% static "student/css/responsive.css" %}" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
-        h5 {
-            text-align: center;
-            font-weight: bold;
-        }
+  <style>
+    /* Custom CSS for card styling */
+    body {
+      background-color: #000000;
+    }
 
-        #go {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
+    .feedback-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
 
-        #go:hover {
-            background-color: #0069d9;
-        }
+    .feedback-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
 
-        /* Styles for the copyright footer */
-        .copyright {
-            background: linear-gradient(to bottom, #222, #444);
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 50px;
-        }
-    </style>
+    .feedback-form input[type="text"],
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    .feedback-form input[type="submit"] {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .feedback-form input[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+
+    .card {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease-in-out;
+      padding: 10px;
+      max-height: 40vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    /* Modify the width of the scrollbar thumb */
+    .card::-webkit-scrollbar {
+      background-color: #ba4f08;
+      width: 5px;
+      /* Change the width here */
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .details {
+      text-align: left;
+    }
+
+    #payment {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    #payment:hover {
+      background-color: rgb(173, 73, 73);
+      box-shadow: 0px 0px 10px rgba(92, 6, 6, 0.2);
+      cursor: pointer;
+    }
+
+    /* Custom CSS for column styling */
+    .column {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f5f5f5;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .column h5 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .column p {
+      margin-bottom: 0;
+    }
+
+    h5 {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #go {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    #summ {
+      color: burlywood;
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    #go:hover {
+      background-color: #0069d9;
+    }
+
+    /* Styles for the copyright footer */
+    .copyright {
+      background: linear-gradient(to bottom, #222, #444);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="hero_area">
-        <div class="bg-box">
-          {% load static %}
-          <img src="{% static "student/images/1.jpg" %}" alt="">
-        </div>
-        <!-- header section strats -->
-        <header class="header_section">
-          <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-              <a class="navbar-brand" href="index.html">
-                <span>
-                  MessMate
-                </span>
-              </a>
-    
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class=""> </span>
-              </button>
-    
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav  mx-auto ">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="menu.html">Menu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li>
-                    <div class="user_option">
-                      <a href="/studentLogin/student_logout" onclick="confirmLogout()"  class="order_online">
+  <div class="hero_area">
+    <div class="bg-box">
+      {% load static %}
+      <img src="{% static "student/images/1.jpg" %}" alt="">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              MessMate
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  mx-auto ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li>
+                <div class="user_option">
+                  <a href="/studentLogin/student_logout" onclick="confirmLogout()" class="order_online">
+                    Sign Out
+                  </a>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Hello {{ current_student.Name }}
+                    </h1>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7 col-lg-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      MessMate
+                    </h1>
+                    <p>
+                      Track your meals online !!
+                    </p>
+                    <div class="btn-box">
+                      <a href="/studentLogin/student_logout" onclick="confirmLogout()" class="btn1">
                         Sign Out
                       </a>
                     </div>
-                  </li>
-                </ul>
-    
-              </div>
-            </nav>
-          </div>
-        </header>
-        <!-- end header section -->
-        <!-- slider section -->
-        <section class="slider_section ">
-          <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="container ">
-                  <div class="row">
-                    <div class="col-md-7 col-lg-6 ">
-                      <div class="detail-box">
-                        <h1>
-                          Hello {{ current_student.Name }}
-                        </h1>
-                       
-                   
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-item ">
-                <div class="container ">
-                  <div class="row">
-                    <div class="col-md-7 col-lg-6 ">
-                      <div class="detail-box">
-                        <h1>
-                          MessMate
-                        </h1>
-                        <p>
-                          Track your meals online !!
-                        </p>
-                        <div class="btn-box">
-                          <a href="/studentLogin/student_logout" onclick="confirmLogout()" class="btn1">
-                            Sign Out 
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             
-            </div>
-            <div class="container">
-              <ol class="carousel-indicators">
-                <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-                <li data-target="#customCarousel1" data-slide-to="1"></li>
-                <!-- <li data-target="#customCarousel1" data-slide-to="2"></li> -->
-              </ol>
             </div>
           </div>
-    
-        </section>
-        <!-- end slider section -->
+
+        </div>
+        <div class="container">
+          <ol class="carousel-indicators">
+            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#customCarousel1" data-slide-to="1"></li>
+            <!-- <li data-target="#customCarousel1" data-slide-to="2"></li> -->
+          </ol>
+        </div>
       </div>
-    <div class="container-fluid text-center">
-        <h1 class="mt-5">MessMate</h1>
-        <div class="row mt-5">
-            <div class="col-md-12 col-lg-6">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h1 class="card-title">Your details</h1>
-                        <div class="details">
-                            <h2>Name: {{ current_student.Name }}</h2>
-                            <h2>MIS: {{ current_student.mis }}</h2>
-                            <h2>Branch: {{ current_student.Dept }}</h2>
-                            <h2>Mess Enrolled: {{ current_student.Mess }}</h2>
-                            <h2 style="display: inline;">Unpaid Bill: Rs. 2500 /-</h2>
-                            <button id="payment">Pay Now</button>
-                        </div>
 
+    </section>
+    <!-- end slider section -->
+    <!-- Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paymentModalLabel">Payment Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            {% load static %}
+            <img src="{% static "student/images/qr.jpeg" %}" style="width: 300px; height: auto;" alt="QR Code">
+            <form method="post" action="/studentLogin/studentAfterLogin/">
+              {% csrf_token %}
 
-                    </div>
-                </div>
+              <div class="form-group">
+                <label for="amount">Amount Paid</label>
+                <input type="text" name="amountPaid" class="form-control" id="amount" placeholder="Enter amount">
+              </div>
+              <div class="form-group">
+                <label for="transaction">Transaction Number</label>
+                <input type="text" name="Trno" class="form-control" id="transaction" placeholder="Enter transaction number">
+              </div>
+              <div class="form-group text-center">
+                <label for="month">Month</label><br>
+                <select class="form-control" name="month" style="max-width: 200px; max-height: 50px; overflow-y: scroll;">
+                  <option value="">Select a month...</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+              </div>
             </div>
-            <div class="col-md-12 col-lg-6">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h1 class="card-title">Today's Menu</h1>
-                        <div class="details">
-                            <div class="row">
-                                <div class="col-6 column">
-                                    <h5>Breakfast</h5>
-                                    <p>Eggs, toast, coffee</p>
-                                    <p>Pancakes, bacon, orange juice</p>
-                                </div>
-                                <div class="col-6 column">
-                                    <h5>Lunch</h5>
-                                    <ul>
-                                        <li>Veg: Grilled chicken, rice, salad</li>
-                                        <li>Non-Veg: Grilled chicken, rice, salad</li>
-                                    </ul>
-
-
-                                </div>
-                                <div class="col-6 column">
-                                    <h5>Snacks</h5>
-                                    <p>Yogurt, granola, fruit</p>
-                                    <p>Chips, salsa, guacamole</p>
-                                </div>
-                                <div class="col-6 column">
-                                    <h5>Dinner</h5>
-                                    <ul>
-                                        <li>Veg: Grilled chicken, rice, salad</li>
-                                        <li>Non-Veg: Grilled chicken, rice, salad</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" name="feepaid_form"  class="btn btn-primary">Submit</button>
             </div>
+          </form >
         </div>
+      </div>
     </div>
-    <div class="container-fluid text-center">
-        <div class="row mt-5">
-            <div class="col-md-12 col-lg-6">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h1 class="card-title">History</h1>
-                        <div class="details">
-                            <form>
-                                <div class="form-row align-items-center">
-                                    <div class="col">
-                                        <select class="form-control" id="months">
-                                            <option value="">Select a month...</option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="submit" id="go">Go</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div>
-                                <br>
-                                <ul>
-                                    <li>Meals Taken : 30</li>
-                                    <li>Breakfast : Rs. 1000 /-</li>
-                                    <li>Bill : Rs. 2500/-</li>
-                                </ul>
-                            </div>
-                        </div>
 
 
-                    </div>
-                </div>
+  </div>
+  <div class="container-fluid text-center">
+    <h1 class="mt-5" id="summ">Summary</h1>
+    <div class="row mt-5">
+      <div class="col-md-12 col-lg-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h1 class="card-title">Your details</h1>
+            <div class="details">
+              <h2>Name: {{ current_student.Name }}</h2>
+              <h2>MIS: {{ current_student.mis }}</h2>
+              <h2>Branch: {{ current_student.Dept }}</h2>
+              <h2>Mess Enrolled: {{ current_student.Mess }}</h2>
+              <h2 style="display: inline;">Unpaid Bill: Rs. 2500 /-</h2>
+              <button type="button" id="payment" onclick="showPaymentModal()">Pay Now</button>
+
             </div>
 
-        </div>
-    </div>
-    <form class="feedback-form" method="post" action="/studentLogin/studentAfterLogin/"  id="feedback_form" >
-      {% csrf_token %}
-      <label for="feedback">Feedback:</label>
-      <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want." id="feedback" name="feedback" rows="5" required></textarea>
-      <input type="submit" name="feedback_form" value="Submit">
-  </form>
-    <footer class="copyright">
-        &copy; 2023 MessMate. All rights reserved.
-      </footer>
-      <script>
-        document.getElementById("feedback_form").addEventListener("submit", function(event) {
-          var confirmation = confirm("Are you sure you want to submit the feedback?");
-          if (confirmation !== true) {
-            event.preventDefault();
-          }
-        });
-        function confirmLogout() {
-          var confirmation = confirm("Are you sure you want to log out?");
-          if (confirmation === true) {
-            // The user clicked "OK", so proceed with the logout
-            alert("Thank You {{ current_student.Name }},You have been logged out.");
-          } else {
-            // The user clicked "Cancel", so do nothing
-            event.preventDefault();
-          }
-        }
 
-      </script>
-     
-    <!-- jQery -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<!-- popper js -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h1 class="card-title">Today's Menu</h1>
+            <div class="details">
+              <div class="row">
+                <div class="col-6 column">
+                  <h5>Breakfast</h5>
+                  <p>Eggs, toast, coffee</p>
+                  <p>Pancakes, bacon, orange juice</p>
+                </div>
+                <div class="col-6 column">
+                  <h5>Lunch</h5>
+                  <ul>
+                    <li>Veg: Grilled chicken, rice, salad</li>
+                    <li>Non-Veg: Grilled chicken, rice, salad</li>
+                  </ul>
+
+
+                </div>
+                <div class="col-6 column">
+                  <h5>Snacks</h5>
+                  <p>Yogurt, granola, fruit</p>
+                  <p>Chips, salsa, guacamole</p>
+                </div>
+                <div class="col-6 column">
+                  <h5>Dinner</h5>
+                  <ul>
+                    <li>Veg: Grilled chicken, rice, salad</li>
+                    <li>Non-Veg: Grilled chicken, rice, salad</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
+
+  <div class="container-fluid text-center">
+    <div class="row mt-5">
+      <div class="col-md-12 col-lg-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h1 class="card-title">History</h1>
+            <div class="details">
+              <form method="post" action="/studentLogin/studentAfterLogin/">
+                {% csrf_token %}
+                <div class="form-row align-items-center dropup">
+                  <div class="col">
+                      <select class="form-control" style="width: 80%; z-index: 100;" name="month" id="months">
+                          <option value="">Select a month...</option>
+                          <option value="January">January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="July">July</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="December">December</option>
+                      </select>
+                      <button type="submit" style="margin-left: 20px;" name="history_form" id="go">Go</button>
+                  </div>
+              </div>
+              
+
+              </form>
+              <div>
+
+                <br>
+                <ul>
+
+                  <li>Month : {{ month }}</li>
+                  <li>Meals Taken : {{ mealcount }}</li>
+                  <li>Breakfast : {{ breakfast_cost }} /-</li>
+                  <li>Total Bill : {{ total_bill }}/-</li>
+                  <li>Paid Bill : {{ bill_paid }}/-</li>
+                  <li>Unpaid Bill : {{ unpaidbill }}/-</li>
+                  <!-- <button type="" style="display: inline; margin-left: 20px;" type="paybill" id="payment">Pay
+                    Now</button> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6 mb-5">
+        <form style="background-color: #ddd;" class="feedback-form" method="post"
+          action="/studentLogin/studentAfterLogin/" id="feedback_form">
+          {% csrf_token %}
+          <label for="feedback">
+            <h1 class="card-title">Feedback</h1>
+          </label>
+          <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want."
+            id="feedback" name="feedback" rows="5" required></textarea>
+          <input type="submit" name="feedback_form" value="Submit">
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <footer class="copyright">
+    &copy; 2023 MessMate. All rights reserved.
+  </footer> -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <h4>
+              Contact Us
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +91 7666130928
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  messmate@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo">
+              MessMate
+            </a>
+            <p>
+              Track, Pay, Look for what you got in your Mess totally Online !!
+            </p>
+            <div class="footer_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <h4>
+            Contact Developers
+          </h4>
+          <p>
+            Sumit Girnar
+          </p>
+          <p>
+            Swapnil Gite
+          </p>
+
+        </div>
+      </div>
+      <div class="footer-info">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">MessMate</a><br><br>
+
+
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("feedback_form").addEventListener("submit", function (event) {
+      var confirmation = confirm("Are you sure you want to submit the feedback?");
+      if (confirmation !== true) {
+        event.preventDefault();
+      }
+    });
+    function confirmLogout() {
+      var confirmation = confirm("Are you sure you want to log out?");
+      if (confirmation === true) {
+        // The user clicked "OK", so proceed with the logout
+        alert("Thank You {{ current_student.Name }},You have been logged out.");
+      } else {
+        // The user clicked "Cancel", so do nothing
+        event.preventDefault();
+      }
+    }
+    function showPaymentModal() {
+      $('#paymentModal').modal('show');
+    }
+
+
   </script>
-<!-- bootstrap js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-  crossorigin="anonymous"></script>
-<!-- owl slider -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-</script>
 
-<!-- isotope js -->
-<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-<!-- nice select -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-<!-- custom js -->
-{% load static %}
-<script src="{% static "administrator/js/custom.js" %} "></script>
+
+  <!-- jQery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <!-- popper js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_SXX3TkkW7-rAPwZgqC9nd-I3Js_mJI"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+  <!-- bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+  {% load static %}
+  <script src="{% static "student/js/custom.js" %}"></script>
 
 </body>
 
