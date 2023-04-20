@@ -11,7 +11,26 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Student Register</title>
+    <style>
+        .select {
+        display: inline-block;
+        padding: 10px;
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
 
+      /* Style the options */
+      .select option {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
 </head>
 
 <body>
@@ -23,23 +42,25 @@
                     <div class="card card-registration my-4">
                         <div class="row g-0">
                             <div class="col-xl-6 d-none d-xl-block">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                {% load static %}
+                                <img src="{%static "administrator/images/bgreg.jpg" %}"
                                     alt="Sample photo" class="img-fluid"
-                                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:950px;width: auto;" />
                             </div>
                             <div class="col-xl-6">
                                 <form action="" method="post">
                                     {% csrf_token %}
 
                                     <div class="card-body p-md-5 text-black">
-                                        <h3 class="mb-5 text-uppercase">Student registration form</h3>
+                                        <h3 class="mb-5 text-uppercase">Register</h3>
 
                                         <div class="row">
 
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form3Example8" placeholder="Enter Your Name"
-                                                    name="Name" class="form-control form-control-lg" />
                                                 <label class="form-label" for="form3Example8">Name</label>
+                                                <input type="text" id="form3Example8" placeholder="Enter Your Name"
+                                                    name="Name" class="form-control form-control-lg" required/>
+                                                
                                             </div>
 
                                         </div>
@@ -62,9 +83,10 @@
                                     </div> -->
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example8" placeholder="Enter Your MIS"
-                                                name="MIS" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example8">MIS</label>
+                                            <input type="text" id="form3Example8" placeholder="Enter Your MIS"
+                                                name="MIS" class="form-control form-control-lg" required />
+                                           
                                         </div>
 
                                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
@@ -94,7 +116,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <span>Year Of Study</span>
-                                                <select class="select" name="Year">
+                                                <select class="select" name="Year" required>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -105,7 +127,7 @@
                                             <div class="col-md-6 mb-4">
                                                 <span>Mess Enrolled</span>
 
-                                                <select class="select" name="MESS_ENR">
+                                                <select class="select" name="MESS_ENR" required>
                                                     <option value="FY">FY</option>
                                                     <option value="SY">SY</option>
                                                     <option value="TY">TY</option>
@@ -117,26 +139,29 @@
 
 
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example90">Department</label>
                                             <input type="text" id="form3Example90" placeholder="Enter Your Department"
-                                                name="Dept" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example90">dept</label>
+                                                name="Dept" class="form-control form-control-lg" required/>
+                                            
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example99" name='pass1'
-                                                class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example99">Enter the Password</label>
+                                            <input type="password" id="form3Example99" name='pass1'
+                                                class="form-control form-control-lg" required />
+                                            
                                         </div>
                             
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example97">Email ID</label>
                                             <input type="email" id="form3Example97"
                                                 placeholder="Enter Your College Mail Id" name="email"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example97">Email ID</label>
+                                                class="form-control form-control-lg" required/>
+                                            
                                         </div>
 
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                                            
                                             <button type="submit" class="btn btn-warning btn-lg ms-2">Submit
                                                 form</button>
                                         </div>

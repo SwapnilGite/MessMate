@@ -10,8 +10,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Student Register</title>
+    <title>Mess Admin Register</title>
+    <style>
+        .select {
+        display: inline-block;
+        padding: 10px;
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
 
+      /* Style the options */
+      .select option {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
 </head>
 
 <body>
@@ -23,23 +42,25 @@
                     <div class="card card-registration my-4">
                         <div class="row g-0">
                             <div class="col-xl-6 d-none d-xl-block">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                {% load static %}
+                                <img src="{%static "administrator/images/bgreg.jpg" %}"
                                     alt="Sample photo" class="img-fluid"
-                                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:800px;width: auto;" />
                             </div>
                             <div class="col-xl-6">
                                 <form action="" method="post">
                                     {% csrf_token %}
 
                                     <div class="card-body p-md-5 text-black">
-                                        <h3 class="mb-5 text-uppercase">Mess Admin registration form</h3>
+                                        <h3 class="mb-5 text-uppercase">Register</h3>
 
                                         <div class="row">
 
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form3Example8" placeholder="Enter Your Name"
-                                                    name="Name" class="form-control form-control-lg" />
                                                 <label class="form-label" for="form3Example8">Name</label>
+
+                                                <input type="text" id="form3Example8" placeholder="Enter Your Name"
+                                                    name="Name" class="form-control form-control-lg" required/>
                                             </div>
 
                                         </div>
@@ -47,18 +68,19 @@
                                
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example8" placeholder="Enter Your Admin_id"
-                                                name="Admin_id" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example8">Admin_id</label>
+                                            <label class="form-label" for="form3Example8">Admin Id</label>
+                                            <input type="text" id="form3Example8" placeholder="Enter Your Admin Id"
+                                                name="Admin_id" class="form-control form-control-lg" required/>
+                                            
                                         </div>
 
 
                                         <div class="row">
                                          
                                             <div class="col-md-6 mb-4">
-                                                <span>Mess Name</span>
+                                                <span>Mess Name</span> 
 
-                                                <select class="select" name="Mess_name">
+                                                <select class="select" name="Mess_name" required>
                                                     <option value="FY">FY</option>
                                                     <option value="SY">SY</option>
                                                     <option value="TY">TY</option>
@@ -71,20 +93,22 @@
 
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example99" name='pass1'
-                                                class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example99">Enter the Password</label>
+                                            <input type="password" id="form3Example99" name='pass1'
+                                                class="form-control form-control-lg" required/>
+                                           
                                         </div>
                             
                                         <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example97">Email ID</label>
                                             <input type="email" id="form3Example97"
                                                 placeholder="Enter Your College Mail Id" name="email"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example97">Email ID</label>
+                                                class="form-control form-control-lg" required/>
+                                     
                                         </div>
 
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                                            
                                             <button type="submit" class="btn btn-warning btn-lg ms-2">Submit
                                                 form</button>
                                         </div>
