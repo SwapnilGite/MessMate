@@ -11,7 +11,7 @@
   <meta name="author" content="" />
   {% load static %}
   <link rel="shortcut icon" href="{% static "student/images/favicon.png" %}" type="">
-
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <title> Feane </title>
 
   <!-- bootstrap core css -->
@@ -39,7 +39,7 @@
   <style>
     /* Custom CSS for card styling */
     body {
-      background-color: #000000;
+      background-color: #342444
     }
 
     .feedback-form {
@@ -71,7 +71,22 @@
       font-size: inherit;
       line-height: inherit;
     }
+    ul {
+      list-style-position: inside;
+    }
 
+    .det{
+      text-align: center;
+      /* color: white; */
+      font-weight: bold;
+    }
+
+    .card-title{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: #ddd;
+      font-size: 54px;
+      
+    }
     .feedback-form input[type="submit"] {
       display: block;
       margin-top: 20px;
@@ -90,14 +105,24 @@
     .feedback-form input[type="submit"]:hover {
       background-color: #0062cc;
     }
+    select {
+       display: block;
+        margin-left: 45%; 
+      }
+    select option {
+      color:#000000;
+    }
 
     .card {
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease-in-out;
       padding: 10px;
-      max-height: 40vh;
+      min-height: 40vh;
       overflow-y: scroll;
       overflow-x: hidden;
+      border-radius: 20px;
+      background-color: #0062cc;
+      /* color: white; */
     }
 
     /* Modify the width of the scrollbar thumb */
@@ -112,7 +137,7 @@
     }
 
     .details {
-      text-align: left;
+      text-align: justify;
     }
 
     #payment {
@@ -133,11 +158,15 @@
 
     /* Custom CSS for column styling */
     .column {
-      border: 1px solid #ddd;
+      
+      border: 2px solid #02074b;
       padding: 10px;
+      border-radius: 15px;
+      /* margin-left: 0.1px; */
       margin-bottom: 10px;
       background-color: #f5f5f5;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      
     }
 
     .column h5 {
@@ -174,6 +203,9 @@
       background-color: #0069d9;
     }
 
+    .menu{
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
     /* Styles for the copyright footer */
     .copyright {
       background: linear-gradient(to bottom, #222, #444);
@@ -238,7 +270,7 @@
                 <div class="col-md-7 col-lg-6 ">
                   <div class="detail-box">
                     <h1>
-                      Hello {{ current_student.Name }}
+                      Hello {{ current_student.Name }} !!
                     </h1>
 
 
@@ -256,13 +288,13 @@
                       MessMate
                     </h1>
                     <p>
-                      Track your meals online !!
+                      Scroll down to see your Summary...
                     </p>
-                    <div class="btn-box">
+                    <!-- <div class="btn-box">
                       <a href="/studentLogin/student_logout" onclick="confirmLogout()" class="btn1">
                         Sign Out
                       </a>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -308,7 +340,7 @@
               </div>
               <div class="form-group text-center">
                 <label for="month">Month</label><br>
-                <select class="form-control" name="month" style="max-width: 200px; max-height: 50px; overflow-y: scroll;">
+                <select class="form-control" name="month" style="max-width: 200px; max-height: 50px; overflow-y: scroll;" required>
                   <option value="">Select a month...</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
@@ -340,16 +372,17 @@
     <h1 class="mt-5" id="summ">Summary</h1>
     <div class="row mt-5">
       <div class="col-md-12 col-lg-6">
-        <div class="card mb-3">
+        <!-- <div class="card mb-3" data-aos="flip-left" style=" background-color: #8d7DFE;"> -->
+        <div class="card mb-3" data-aos="flip-left" style=" background-color: #e6060698;">
+
           <div class="card-body">
             <h1 class="card-title">Your details</h1>
-            <div class="details">
-              <h2>Name: {{ current_student.Name }}</h2>
-              <h2>MIS: {{ current_student.mis }}</h2>
-              <h2>Branch: {{ current_student.Dept }}</h2>
-              <h2>Mess Enrolled: {{ current_student.Mess }}</h2>
-              <h2 style="display: inline;">Unpaid Bill: Rs. 2500 /-</h2>
-              <button type="button" id="payment" onclick="showPaymentModal()">Pay Now</button>
+            <div class="details text-center">
+              <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#ddd;">Name: {{ current_student.Name }}</h2>
+              <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#ddd;">MIS: {{ current_student.mis }}</h2>
+              <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#ddd;">Branch: {{ current_student.Dept }}</h2>
+              <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#ddd;">Mess Enrolled: {{ current_student.Mess }}</h2>
+              <!-- <h2 style="display: inline;">Unpaid Bill: {{ unpaidbill }} /-</h2> -->
 
             </div>
 
@@ -358,36 +391,36 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-6">
-        <div class="card mb-3">
+        <div class="card mb-3" data-aos="zoom-out" style=" background-color: #C67AFF;">
           <div class="card-body">
             <h1 class="card-title">Today's Menu</h1>
             <div class="details">
               <div class="row">
                 <div class="col-6 column">
                   <h5>Breakfast</h5>
-                  <p>Eggs, toast, coffee</p>
-                  <p>Pancakes, bacon, orange juice</p>
+                  <p  class="menu"  >Eggs, toast, coffee</p>
+                  <p  class="menu"  >Pancakes, bacon, orange juice</p>
                 </div>
                 <div class="col-6 column">
                   <h5>Lunch</h5>
-                  <ul>
-                    <li>Veg: Grilled chicken, rice, salad</li>
-                    <li>Non-Veg: Grilled chicken, rice, salad</li>
-                  </ul>
+                  
+                    <p  class="menu" >Veg: Grilled chicken, rice, salad</p>
+                    <p  class="menu" >Non-Veg: Grilled chicken, rice, salad</p>
+                  
 
 
                 </div>
                 <div class="col-6 column">
                   <h5>Snacks</h5>
-                  <p>Yogurt, granola, fruit</p>
-                  <p>Chips, salsa, guacamole</p>
+                  <p  class="menu" >Yogurt, granola, fruit</p>
+                  <p class="menu">  Chips, salsa, guacamole</p>
                 </div>
                 <div class="col-6 column">
                   <h5>Dinner</h5>
-                  <ul>
-                    <li>Veg: Grilled chicken, rice, salad</li>
-                    <li>Non-Veg: Grilled chicken, rice, salad</li>
-                  </ul>
+                  
+                    <p  class="menu" >Veg: Grilled chicken, rice, salad</p>
+                    <p  class="menu" >Non-Veg: Grilled chicken, rice, salad</p>
+                 
                 </div>
               </div>
             </div>
@@ -404,17 +437,21 @@
   <div class="container-fluid text-center">
     <div class="row mt-5">
       <div class="col-md-12 col-lg-6">
-        <div class="card mb-3">
+        <!-- <div class="card mb-3" data-aos="zoom-out" style=" background-color: #FF73BC;"> -->
+        <div class="card mb-3" data-aos="zoom-out" style=" background-color: #f7c82c93;">
+
           <div class="card-body">
             <h1 class="card-title">History</h1>
             <div class="details">
               <form method="post" action="/studentLogin/studentAfterLogin/">
                 {% csrf_token %}
                 <div class="form-row align-items-center dropup">
+                  <label for="month" style="color: white;font-size: 23px;margin-left: 20px;font-weight: bold;">Select Month:</label><br>
                   <div class="col">
-                      <select class="form-control" style="width: 80%; z-index: 100;" name="month" id="months">
+                    
+                      <select class="form-control" style="min-width: 80px; z-index: 100;" name="month" id="months">
                           <option value="">Select a month...</option>
-                          <option value="January">January</option>
+                          <option  value="January">January</option>
                           <option value="February">February</option>
                           <option value="March">March</option>
                           <option value="April">April</option>
@@ -428,6 +465,8 @@
                           <option value="December">December</option>
                       </select>
                       <button type="submit" style="margin-left: 20px;" name="history_form" id="go">Go</button>
+                      <button type="button" style="background-color: red;" id="payment" onclick="showPaymentModal()">Pay Now</button>
+
                   </div>
               </div>
               
@@ -438,12 +477,12 @@
                 <br>
                 <ul>
 
-                  <li>Month : {{ month }}</li>
-                  <li>Meals Taken : {{ mealcount }}</li>
-                  <li>Breakfast : {{ breakfast_cost }} /-</li>
-                  <li>Total Bill : {{ total_bill }}/-</li>
-                  <li>Paid Bill : {{ bill_paid }}/-</li>
-                  <li>Unpaid Bill : {{ unpaidbill }}/-</li>
+                  <li style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> Month : {{ month }}</li>
+                  <li  style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Meals Taken : {{ mealcount }}</li>
+                  <li style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Breakfast : {{ breakfast_cost }} /-</li>
+                  <li style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Total Bill : {{ total_bill }}/-</li>
+                  <li style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Paid Bill : {{ bill_paid }}/-</li>
+                  <li style="color: #ddd;font-size:22px;font-weight: bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Unpaid Bill : {{ unpaidbill }}/-</li>
                   <!-- <button type="" style="display: inline; margin-left: 20px;" type="paybill" id="payment">Pay
                     Now</button> -->
                 </ul>
@@ -453,25 +492,39 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-6 mb-5">
-        <form style="background-color: #ddd;" class="feedback-form" method="post"
-          action="/studentLogin/studentAfterLogin/" id="feedback_form">
-          {% csrf_token %}
-          <label for="feedback">
-            <h1 class="card-title">Feedback</h1>
-          </label>
-          <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want."
-            id="feedback" name="feedback" rows="5" required></textarea>
-          <input type="submit" name="feedback_form" value="Submit">
-        </form>
+        <div class="col-md-12">
+          <!-- <div class="map_container ">
+            <!-- <div id="googleMap"></div> -->
+         
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.994134460182!2d73.8572327!3d18.5291672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c0627ac5aaad%3A0xe1e8f57268337604!2sZEST%20Office!5e0!3m2!1sen!2sin!4v1670409405059!5m2!1sen!2sin" width="1100" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" -->
+            <!-- <div style="width: 100%"><iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100;height=450&amp;hl=en&amp;q=coep%20mess+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="600" frameborder="0"><a href="https://www.maps.ie/distance-area-calculator.html">distance maps</a></iframe></div> -->
+            <div data-aos="zoom-out" style="width: 100%;border-radius: 20px;"><iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=en&amp;q=coep%20mess+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="450" frameborder="0"><a href="https://www.maps.ie/distance-area-calculator.html">distance maps</a></iframe></div>
+
+
+        </div>
+      
       </div>
 
+    </div>
+    <div class="col-md-12" data-aos="zoom-out">
+      
+      <form style="background-color: #ddd;" class="feedback-form" method="post"
+        action="/studentLogin/studentAfterLogin/" id="feedback_form">
+        {% csrf_token %}
+        <label for="feedback">
+          <h1 class="card-title" style="color: #222;">Feedback</h1>
+        </label>
+        <textarea placeholder="Your feedback will be anonymous. Mention your name in the feedback if you want."
+          id="feedback" name="feedback" rows="5" required></textarea>
+        <input type="submit" name="feedback_form" value="Submit">
+      </form>
     </div>
   </div>
 
   <!-- <footer class="copyright">
     &copy; 2023 MessMate. All rights reserved.
   </footer> -->
-  <footer class="footer_section">
+  <footer class="footer_section mt-5">
     <div class="container">
       <div class="row">
         <div class="col-md-4 footer-col">
@@ -538,7 +591,9 @@
           <p>
             Swapnil Gite
           </p>
-
+          <p>
+            Prathmesh Kusalkar
+            </p>
         </div>
       </div>
       <div class="footer-info">
@@ -593,7 +648,7 @@
   <!-- owl slider -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- isotope js -->
   <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
   <!-- nice select -->
@@ -601,7 +656,9 @@
   <!-- custom js -->
   {% load static %}
   <script src="{% static "student/js/custom.js" %}"></script>
-
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>

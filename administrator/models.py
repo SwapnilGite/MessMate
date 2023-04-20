@@ -27,7 +27,7 @@ class Mess(models.Model):
         return self.Mess_name
     
 class Feedback(models.Model):
-    feedback = models.CharField(max_length=50)
+    feedback = models.CharField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     Mess=models.ForeignKey(Mess,on_delete=models.CASCADE,default=None)
     def __str__(self):

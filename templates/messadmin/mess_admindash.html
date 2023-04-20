@@ -18,6 +18,14 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+    .messTitle{
+      font-size: 45px;
+      text-align: center;
+      margin-top: 20px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: bold;
+
+    }
   </style>
 
 
@@ -39,52 +47,16 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">MessMate</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/AdminLogin">Admin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/studentLogin">StudentLogin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/MessAdminLogin">MessAdminLogin</a>
-              </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-
+      <div class="user_option">
+        <a href="/MessAdminLogin/logout" onclick="confirmLogout()" class="order_online">
+          Sign Out
+        </a>
       </div>
     </div>
   </nav>
   <div>
     {% if request.user.is_authenticated %}
-    <p>Welcome, {{ request.user.username }}!</p>
+    <p class="messTitle">Welcome, {{ messAdminName }}!</p>
     {% endif %}
   </div>
   <div class="my-5 mx-4">
@@ -258,6 +230,18 @@
   </script>
   <script>
     alert('{{ message }}');
+  </script>
+  <script>
+    function confirmLogout() {
+      var confirmation = confirm("Are you sure you want to log out?");
+      if (confirmation === true) {
+        // The user clicked "OK", so proceed with the logout
+        alert("Thank You {{ messAdminName }},You have been logged out.");
+      } else {
+        // The user clicked "Cancel", so do nothing
+        event.preventDefault();
+      }
+    }
   </script>
 </body>
 

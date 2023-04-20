@@ -20,10 +20,10 @@
             background: #fccb90;
 
             /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+            background: -webkit-linear-gradient(to right, #1b18bd, #1d5b8d, #055292, #68c9f7);
 
             /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+            background: linear-gradient(to right, #1b18bd, #035faa, #055292, #68c9f7);
         }
 
         @media (min-width: 768px) {
@@ -56,7 +56,7 @@
                                         {% load static %}
                                         <img src="{%static "administrator/images/plate.png" %}"
                                             style="width: 185px;" alt="logo">
-                                        <h4 class="mt-1 mb-5 pb-1">Admin Login</h4>
+                                        <h4 class="mt-1 mb-5 pb-1">Student Login</h4>
                                     </div>
 
                                     <form action="" method="post">
@@ -75,7 +75,7 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                            <button class="btn btn-primary btn-block fa-lg  mb-3"
                                                 type="submit">Log
                                                 in</button>
                                            
@@ -83,7 +83,7 @@
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
-                                            <button type="button" class="btn btn-outline-danger"> <a href="/studentLogin/studentRegister">Create New</a> </button>
+                                            <button type="button" class="btn btn-outline-dark"> <a href="/studentLogin/studentRegister">Create New</a> </button>
                                         </div>
 
                                     </form>
