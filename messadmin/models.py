@@ -73,8 +73,7 @@ class MealRecord(models.Model):
     Messname = models.ForeignKey(Mess,on_delete=models.CASCADE,default=None);
     mealcount = models.IntegerField(default=1);
     month = models.CharField(max_length=50,choices=months,default=None)
-    total_bill=models.IntegerField(default=0)
-    bill_paid=models.IntegerField(default=0)
+  
     
     def __str__(self):
         return str(self.Student.Name)+" "+str(self.month)
@@ -127,11 +126,12 @@ class Bill(models.Model):
     )
     
     Bill_id=models.AutoField(primary_key=True)
-    Meal_id=models.ForeignKey(MealRecord,default=None,on_delete=models.CASCADE)
-    Bf_id=models.ForeignKey(BfRecord,default=None,on_delete=models.CASCADE)
+    Student_id = models.ForeignKey(Student,default=None,on_delete=models.CASCADE)
+    # Meal_id=models.ForeignKey(MealRecord,default=None,on_delete=models.CASCADE)
+    # Bf_id=models.ForeignKey(BfRecord,default=None,on_delete=models.CASCADE)
     total_bill=models.IntegerField(default=0);
     bill_paid=models.IntegerField(default=0);
     month = models.CharField(max_length=50,choices=months,default=None)
 
     def __str__(self):
-        return self.Bill_id
+        return str(self.Student_id.Name)+" "+str(self.month)

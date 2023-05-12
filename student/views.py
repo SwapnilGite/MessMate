@@ -56,11 +56,17 @@ def studentAfterLogin(request):
             month=request.POST.get('month','')
             meal=MealRecord.objects.filter(Student=current_student,month=month)[0];
             amountPaid=int(amountPaid)
-           
-      
+            
+            bill = Bill.objects.get(Student_id=current_student)
+            unpaid_bill = bill.total_bill - bill.bill_paid
+            if(unpaid_bill < amountPaid):
+                return HttpResponse("error")
+            bill.bill_paid=amountPaid+bill.bill_paid
+            
+            
 
-            meal.bill_paid=int(amountPaid)+meal.bill_paid
-            meal.save()
+            bill.save()
+            
             
 
             
@@ -83,9 +89,13 @@ def studentAfterLogin(request):
                 breakfast=BfRecord.objects.filter(Student=current_student,month=month)[0];
                 mealcount=meal.mealcount
                 breakfast_cost=breakfast.amount
-                total_bill=40*mealcount+breakfast_cost
-                meal.total_bill=total_bill
-                bill_paid=meal.bill_paid
+                # total_bill=40*mealcount+breakfast_cost
+                bill=Bill.objects.get(Student_id=current_student,month=month)
+                total_bill=bill.total_bill
+                bill_paid=bill.bill_paid
+                
+                # meal.total_bill=total_bill
+                # bill_paid=meal.bill_paid
                 # bill_paid=0
                 # bill = Bill.objects.get(Meal_id=meal, Bf_id=breakfast, month=month)
                 # bill.total_bill = total_bill

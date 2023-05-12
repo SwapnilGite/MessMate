@@ -15,6 +15,8 @@ from administrator.models import Feedback
 from datetime import datetime, timedelta
 from messadmin.models import BfRecord
 from messadmin.models import Bill
+
+
 def MessadminLogin(request):
     if request.method=="POST":
         # Get the post parameters
@@ -95,6 +97,25 @@ def adminDashboard(request):
                 meal_record.save()
                 message = f"Meal count for {student.Name} set to 1 for {current_month}"
                 print(message)
+            
+            try:     
+                # bf_record = BfRecord.objects.get(Student=student, month=current_month)
+                # meal_record = MealRecord.objects.get(Student=student, month=current_month)
+                
+                bill_record = Bill.objects.get(Student_id=student)
+                # bill_record.total_bill=bf_record.amount+40*(meal_record.mealcount)
+                bill_record.total_bill=bill_record.total_bill+40
+                
+                bill_record.month=current_month
+                bill_record.save()
+                
+            except Bill.DoesNotExist:
+                # bf_record = BfRecord.objects.get(Student=student, month=current_month)
+                # meal_record = MealRecord.objects.get(Student=student, month=current_month)
+                
+                bill_record = Bill.objects.create(Student_id=student,month=current_month)
+                bill_record.total_bill=bill_record.total_bill+40
+                bill_record.save()
                 
             return render(request, 'messadmin/mess_admindash.html',my_dict)
         
@@ -172,10 +193,29 @@ def adminDashboard(request):
                 message =  f" Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
                 print(message)
             except BfRecord.DoesNotExist:
-                bf_record = BfRecord.objects.create(Student=student,month=current_month,Messname=Mess_,amount=breakfast_bill)
+                bf_record = BfRecord.objects.create(Student=student,month=current_month,Messname=Mess_,amount=0)
                 bf_record.save()
                 message = f" new : Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
                 print(message)
+                
+            try:     
+                # bf_record = BfRecord.objects.get(Student=student, month=current_month)
+                # meal_record = MealRecord.objects.get(Student=student, month=current_month)
+                
+                bill_record = Bill.objects.get(Student_id=student)
+                # bill_record.total_bill=bf_record.amount+40*(meal_record.mealcount)
+                bill_record.total_bill=bill_record.total_bill+breakfast_bill                
+                bill_record.month=current_month
+                bill_record.save()
+                
+            except Bill.DoesNotExist:
+                # bf_record = BfRecord.objects.get(Student=student, month=current_month)
+                # meal_record = MealRecord.objects.get(Student=student, month=current_month)
+                
+                bill_record = Bill.objects.create(Student_id=student,month=current_month)
+                bill_record.total_bill=bill_record.total_bill+breakfast_bill
+                bill_record.save()
+          
             
     return render(request, "messadmin/mess_admindash.html",my_dict)
 

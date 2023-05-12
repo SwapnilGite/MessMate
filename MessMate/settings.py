@@ -70,9 +70,9 @@ WSGI_APPLICATION = 'MessMate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'messdatabase',
+        'NAME': 'messdatabase2',
         'USER': 'root',
-        'PASSWORD' : 'root',
+        'PASSWORD' : 'Devgiri@20',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'OPTIONS': { 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" }
