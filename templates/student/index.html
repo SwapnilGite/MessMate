@@ -396,30 +396,34 @@
             <h1 class="card-title">Today's Menu</h1>
             <div class="details">
               <div class="row">
+                <!-- Breakfast = models.CharField(max_length=50)
+                VegLunch = models.CharField(max_length=50,default=None)
+                NonVegLunch = models.CharField(max_length=50,default=None)
+                VegDinner = models.CharField(max_length=50,default=None)
+                NonVegDinner = models.CharField(max_length=50,default=None)
+                EveSnacks = models.CharField(max_length=50) -->
                 <div class="col-6 column">
                   <h5>Breakfast</h5>
-                  <p  class="menu"  >Eggs, toast, coffee</p>
-                  <p  class="menu"  >Pancakes, bacon, orange juice</p>
+                  <p  class="menu"  >{{ Menu.Breakfast }}</p>
                 </div>
                 <div class="col-6 column">
                   <h5>Lunch</h5>
                   
-                    <p  class="menu" >Veg: Grilled chicken, rice, salad</p>
-                    <p  class="menu" >Non-Veg: Grilled chicken, rice, salad</p>
+                    <p  class="menu" >Veg: {{ Menu.VegLunch }}</p>
+                    <p  class="menu" >Non-Veg: {{ Menu.NonVegLunch }}</p>
                   
 
 
                 </div>
                 <div class="col-6 column">
-                  <h5>Snacks</h5>
-                  <p  class="menu" >Yogurt, granola, fruit</p>
-                  <p class="menu">  Chips, salsa, guacamole</p>
+                  <h5>Evening Snacks</h5>
+                  <p  class="menu" >{{ Menu.EveSnacks }}</p>
                 </div>
                 <div class="col-6 column">
                   <h5>Dinner</h5>
                   
-                    <p  class="menu" >Veg: Grilled chicken, rice, salad</p>
-                    <p  class="menu" >Non-Veg: Grilled chicken, rice, salad</p>
+                    <p  class="menu" >Veg: {{ Menu.VegDinner }}</p>
+                    <p  class="menu" >Non-Veg: {{ Menu.NonVegDinner }}</p>
                  
                 </div>
               </div>

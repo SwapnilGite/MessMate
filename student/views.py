@@ -13,7 +13,7 @@ from messadmin.models import MealRecord
 from messadmin.models import BfRecord
 from messadmin.models import Bill
 from administrator.models import Transaction
-
+from messadmin.models import Menu
 
 def studentLogin(request):
     if request.method=="POST":
@@ -38,8 +38,13 @@ def studentAfterLogin(request):
     current_user = request.user.username
     print("current_user",current_user)
     current_student=Student.objects.filter(mis=current_user)[0]
+    
+    Mess_=current_student.Mess
+    Menu_=Menu.objects.get(Mess=Mess_)
+    
     my_dict = {
     "current_student": current_student,
+    "Menu": Menu_,
     }
     
     if request.method == "POST":
@@ -88,18 +93,11 @@ def studentAfterLogin(request):
                 breakfast=BfRecord.objects.filter(Student=current_student,month=month)[0];
                 mealcount=meal.mealcount
                 breakfast_cost=breakfast.amount
-                # total_bill=40*mealcount+breakfast_cost
                 bill=Bill.objects.get(Student_id=current_student,month=month)
                 total_bill=bill.total_bill
                 bill_paid=bill.bill_paid
                 
-                # meal.total_bill=total_bill
-                # bill_paid=meal.bill_paid
-                # bill_paid=0
-                # bill = Bill.objects.get(Meal_id=meal, Bf_id=breakfast, month=month)
-                # bill.total_bill = total_bill
-                # bill_paid=bill.bill_paid
-                
+               
                 components['mealcount']=mealcount;
                 components['total_bill']=total_bill
                 components["breakfast_cost"]=breakfast_cost

@@ -192,7 +192,7 @@ def adminDashboard(request):
                 message =  f" Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
                 print(message)
             except BfRecord.DoesNotExist:
-                bf_record = BfRecord.objects.create(Student=student,month=current_month,Messname=Mess_,amount=0)
+                bf_record = BfRecord.objects.create(Student=student,month=current_month,Messname=Mess_,amount=breakfast_bill)
                 bf_record.save()
                 message = f" new : Current breakfast for {student.Name}  for {current_month} is {bf_record.amount}"
                 print(message)
