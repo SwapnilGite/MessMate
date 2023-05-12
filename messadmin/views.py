@@ -12,10 +12,11 @@ import datetime
 from datetime import date
 from student.models import Student
 from administrator.models import Feedback
+from administrator.models import Transaction
+
 from datetime import datetime, timedelta
 from messadmin.models import BfRecord
 from messadmin.models import Bill
-
 
 def MessadminLogin(request):
     if request.method=="POST":
@@ -39,9 +40,7 @@ def adminDashboard(request):
     admin_id=request.user.username
     mess_admin=MessAdmin.objects.filter(Admin_id=admin_id)[0]
     messAdminName = mess_admin.Name
-    print(mess_admin.Name)
     Mess_=mess_admin.Mess.Mess_name
-    print(Mess_)
     all_students=Student.objects.filter(Mess=Mess_)
     print(all_students)
  
@@ -252,6 +251,23 @@ def messadminRegister(request):
         # return redirect('studenthome')
     else:
         return render(request,"messadmin/mess_adminregister.html")   
+
+def tranHistory(request):
+    admin_id=request.user.username
+    mess_admin=MessAdmin.objects.get(Admin_id=admin_id)
+    Mess_=mess_admin.Mess.Mess_name
+    all_students=Student.objects.filter(Mess=Mess_)
+    all_transactions=Transaction.objects.filter()
+    all_transactionss=[]
+    for transaction in all_transactions:
+        if(transaction.Student_id.Mess==Mess_):
+            all_transactionss.append(transaction)
+    my_dict = {
+    "all_students": all_students,
+    "all_transactions":all_transactionss,
+    "months":["January","February","March","April","May","June","July","August","September","October","November","December"]}
+    
+    return render(request,"messadmin/transaction.html",my_dict)
 
 
 def messadmin_logout(request):

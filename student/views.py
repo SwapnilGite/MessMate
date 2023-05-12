@@ -12,6 +12,8 @@ from messadmin.models import Mess
 from messadmin.models import MealRecord
 from messadmin.models import BfRecord
 from messadmin.models import Bill
+from administrator.models import Transaction
+
 
 def studentLogin(request):
     if request.method=="POST":
@@ -50,7 +52,8 @@ def studentAfterLogin(request):
             feed.save()
             print("Feedback added")
         
-        if "feepaid_form" in request.POST:                        
+        if "feepaid_form" in request.POST:  
+          
             amountPaid = request.POST.get('amountPaid', '')
             Trno = request.POST.get('Trno', '')
             month=request.POST.get('month','')
@@ -62,15 +65,11 @@ def studentAfterLogin(request):
             if(unpaid_bill < amountPaid):
                 return HttpResponse("error")
             bill.bill_paid=amountPaid+bill.bill_paid
-            
-            
-
             bill.save()
             
-            
+            transaction = Transaction.objects.create(Student_id=current_student,month=month,date=date.today(),tra_id=Trno,amount=amountPaid,total_bill=bill.total_bill,unpaid_bill=bill.total_bill -bill.bill_paid)
+            transaction.save()
 
-            
-        
         if "history_form" in request.POST:
             
             month=request.POST.get('month','')

@@ -108,9 +108,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-end pt-3">
-                                            
-                                            <button type="submit" class="btn btn-warning btn-lg ms-2">Submit
-                                                form</button>
+                                            <button type="submit" class="btn btn-warning btn-lg ms-2" onclick="confirmRegistration()">Submit form</button>
                                         </div>
                                 </form>
                             </div>
@@ -122,6 +120,22 @@
         </div>
     </section>
 
+    <script>
+        function confirmRegistration() {
+            if (confirm("Are you sure you want to register?")) {
+                alert("Registered successfully!");
+                document.getElementById("registration-form").submit();
+            }
+        }
+    </script>
+    Make sure to replace "registration-form" with the actual id of your registration form. Also, make sure to include this script in the same file as your registration form.
+    
+    
+    
+    
+    
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
