@@ -21,18 +21,15 @@ def studentLogin(request):
         loginusername=request.POST['loginusername']
         loginpassword=request.POST['loginpassword']
         
-        print("loginusername: ",loginusername)
-        
-        user=authenticate(username= loginusername, password= loginpassword)
+        user=authenticate(username=loginusername, password=loginpassword)
         if user is not None:
-            print("Hello World\n");
             login(request, user)
-            
             return redirect("studentAfterLogin")
         else:
-            return render(request,"student/studentlogin.html")
+            return render(request,"student/studentlogin.html", {"error": "Invalid username or password."})
 
     return render(request,"student/studentlogin.html")
+
 
 def studentAfterLogin(request):
     current_user = request.user.username

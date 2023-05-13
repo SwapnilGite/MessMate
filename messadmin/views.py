@@ -31,7 +31,7 @@ def MessadminLogin(request):
             login(request, user)
             return redirect("adminDashboard")
         else:
-            return render(request,"messadmin/mess_adminlogin.html")
+            return render(request,"messadmin/mess_adminlogin.html", {"error": "Invalid username or password."})
 
     return render(request,"messadmin/mess_adminlogin.html")
 
